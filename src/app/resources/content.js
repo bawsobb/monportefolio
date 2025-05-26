@@ -1,20 +1,21 @@
 import { Logo } from "@/once-ui/components";
+import { title } from "process";
 
 const person = {
-  firstName: "Selene",
-  lastName: "Yu",
+  firstName: "Oumar Bamory",
+  lastName: "Bengaly",
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Design Engineer",
+  role: "Ingénieur Réseaux Systèmes et Télécommunications",
   avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  email: "bawsobb@gmail.com",
+  location: "Africa/Bamako", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["Français", "Anglais"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter = {
-  display: true,
+  display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: (
     <>
@@ -30,12 +31,12 @@ const social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system/nextjs-starter",
+    link: "https://github.com/bawsobb",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "www.linkedin.com/in/oumarbeng7",
   },
   {
     name: "X",
@@ -51,20 +52,19 @@ const social = [
 
 const home = {
   path: "/",
-  image: "/images/og/home.jpg",
+ // image: "/images/og/home.jpg",
   label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  title: `Portfolio de ${person.name}`,
+  description: `Portfolio de ${person.name}, ${person.role} passionné par le pentesting, la sécurité réseau et le cloud.`,
+  headline: <>Sécurité, Réseaux, Innovation.</>,
   featured: {
     display: true,
-    title: <>Recent project: <strong className="ml-4">Once UI</strong></>,
-    href: "/work/building-once-ui-a-customizable-design-system",
+    title: <>Projet Vedette: <strong className="ml-4">Audit de sécurité et tests d'intrusion dans un environnement réseau virtualisé à l'aide de pfSense et Kali Linux</strong></>,
   },
   subline: (
     <>
-      I'm Selene, a design engineer at <Logo icon={false} style={{ display: "inline-flex", top: "0.25em", marginLeft: "-0.25em" }}/>, where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      Titulaire d'un Master en Ingénierie des Systèmes et Réseaux et de plusieurs Certifications comme le Cisco CCNA, je suis passionné par la sécurité des systèmes d'information et les technologies de pointe. J'utilise mes compétences pour concevoir des solutions robustes et sécurisées, tout en améliorant les performances et la fiabilité des infrastructures réseau.
+      <br />Je me spécialise dans l’audit de sécurité, les tests d’intrusion et la modernisation d’infrastructures réseau.
     </>
   ),
 };
@@ -72,7 +72,7 @@ const home = {
 const about = {
   path: "/about",
   label: "About",
-  title: `About – ${person.name}`,
+  title: `A propos – ${person.name}`,
   description: `Meet ${person.name}, ${person.role} from ${person.location}`,
   tableOfContent: {
     display: true,
@@ -82,7 +82,7 @@ const about = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -90,108 +90,80 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Je suis titulaire d'un Master Sécurité des Réseaux et Télécommunications. Je me passionne pour la cybersécurité, les environnements virtualisés, et le développement d’applications sécurisées. Actuellement, je travaille sur un projet de mémoire centré sur le pentesting et la remédiation des vulnérabilités d’un réseau d’entreprise.
       </>
     ),
   },
   work: {
     display: true, // set to false to hide this section
-    title: "Work Experience",
+    title: "Experiences Professionnelles",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Agence Nationale de Télésanté et d’Informatique Médicale",
+        timeframe: "2024 - Actuellement",
+        role: "Ingénieur Réseaux et Systèmes",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Audit et sécurisation du réseau informatique
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Maintenance et surveillance des serveurs (optimisation des performances et détection d’incidents)
           </>,
+          <>Gestion du parc informatique (mise en place de stratégies de gestion et d'amélioration)</>,
+          <> Participation active aux projets de cybersécurité et 
+          d’amélioration des infrastructures IT</>,
+          <>Création et Mise en place d’un serveur VOIP</>
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
-      },
-      {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
-        achievements: [
-          <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
-          </>,
-        ],
-        images: [],
       },
     ],
   },
   studies: {
     display: true, // set to false to hide this section
-    title: "Studies",
+    title: "Formations et Certifications",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "SupManagement Mali",
+        description: <>Master en Ingénierie Réseaux, Systèmes et Télécommunications à l’Ecole Supérieure</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "SupManagement Maroc",
+        description: <>Licence en Ingénierie Réseaux, Systèmes et Télécommunications à l’Ecole Supérieure.</>,
+      },
+      {
+        name: "Cisco Networking Academy",
+        description: <>Certification Cisco CCNA (Cisco Certified Network Associate) Enterprise Networking, 
+        Security, and Automation</>,
+      },
+      {
+        name: "Cisco Networking Academy",
+        description: <>Certification Cisco Networking Academy: Network Security</>,
       },
     ],
   },
   technical: {
     display: true, // set to false to hide this section
-    title: "Technical skills",
+    title: "Compétences Techniques",
     skills: [
       {
-        title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Administration Système",
+        description: <>Gestion des systèmes Linux et Windows, configuration de serveurs, virtualisation avec VMware et VirtualBox et conteneurisation Docker et LXC</>,
       },
       {
-        title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Sécurité des Réseaux",
+        description: <>Pentesting (Kali Linux, Nmap, Nessus, IDS/IPS, Wireshark, Burp Suite), système de gestion des informations et des événements de sécurité (SIEM)</>,
       },
+      {
+        title: "IA & Prompt Engineering", 
+        description: <>Utilisation de l'IA pour l'automatisation des tâches, la détection des anomalies et l'amélioration de la sécurité des systèmes</>,
+      },
+      {
+        title: "Administration de Réseaux",
+        description: <>Configuration et gestion de routeurs, commutateurs, pare-feu (Cisco, pfSense), VPN, VLAN, QoS, DHCP, DNS</>,
+      },
+      {
+        title: "Développement d'Applications",
+        description: <>Développement d'applications web et mobiles sécurisées, intégration de systèmes de sécurité dans les applications, utilisation de frameworks modernes (React, Node.js)</>,
+      }
     ],
   },
 };

@@ -214,32 +214,6 @@ export default function About() {
                         </Text>
                       ))}
                     </Column>
-                    {experience.images.length > 0 && (
-                      <Flex fillWidth paddingTop="m" paddingLeft="40" wrap>
-                        {experience.images.map((image, index) => (
-                          <Flex
-                            key={index}
-                            border="neutral-medium"
-                            radius="m"
-                            //@ts-ignore
-                            minWidth={image.width}
-                            //@ts-ignore
-                            height={image.height}
-                          >
-                            <SmartImage
-                              enlarge
-                              radius="m"
-                              //@ts-ignore
-                              sizes={image.width.toString()}
-                              //@ts-ignore
-                              alt={image.alt}
-                              //@ts-ignore
-                              src={image.src}
-                            />
-                          </Flex>
-                        ))}
-                      </Flex>
-                    )}
                   </Column>
                 ))}
               </Column>
@@ -283,32 +257,7 @@ export default function About() {
                     <Text variant="body-default-m" onBackground="neutral-weak">
                       {skill.description}
                     </Text>
-                    {skill.images && skill.images.length > 0 && (
-                      <Flex fillWidth paddingTop="m" gap="12" wrap>
-                        {skill.images.map((image, index) => (
-                          <Flex
-                            key={index}
-                            border="neutral-medium"
-                            radius="m"
-                            //@ts-ignore
-                            minWidth={image.width}
-                            //@ts-ignore
-                            height={image.height}
-                          >
-                            <SmartImage
-                              enlarge
-                              radius="m"
-                              //@ts-ignore
-                              sizes={image.width.toString()}
-                              //@ts-ignore
-                              alt={image.alt}
-                              //@ts-ignore
-                              src={image.src}
-                            />
-                          </Flex>
-                        ))}
-                      </Flex>
-                    )}
+                 
                   </Column>
                 ))}
               </Column>
