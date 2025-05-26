@@ -60,7 +60,9 @@ const home = {
   featured: {
     display: true,
     title: <>Projet Vedette: <strong className="ml-4">Audit de sécurité et tests d'intrusion dans un environnement réseau virtualisé à l'aide de pfSense et Kali Linux</strong></>,
-  },
+  href: "/work/mon-premier-projet",
+},
+   
   subline: (
     <>
       Titulaire d'un Master en Ingénierie des Systèmes et Réseaux et de plusieurs Certifications comme le Cisco CCNA, je suis passionné par la sécurité des systèmes d'information et les technologies de pointe. J'utilise mes compétences pour concevoir des solutions robustes et sécurisées, tout en améliorant les performances et la fiabilité des infrastructures réseau.
