@@ -10,13 +10,13 @@ const person = {
   role: "Ingénieur Réseaux Systèmes et Télécommunications",
   avatar: "/images/avatar.jpg",
   email: "bawsobb@gmail.com",
-  location: "Africa/Bamako", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["Français", "Anglais"], // optional: Leave the array empty if you don't want to display languages
+  location: "Africa/Bamako",
+  languages: ["Français", "Anglais"],
 };
 
 const newsletter = {
   display: false,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
+  title: <>Abonnez-vous à ma newsletter</>,
   description: (
     <>
       I occasionally write about design, technology, and share thoughts on the intersection of
@@ -26,8 +26,6 @@ const newsletter = {
 };
 
 const social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
   {
     name: "GitHub",
     icon: "github",
@@ -39,11 +37,6 @@ const social = [
     link: "www.linkedin.com/in/oumarbeng7",
   },
   {
-    name: "X",
-    icon: "x",
-    link: "",
-  },
-  {
     name: "Email",
     icon: "email",
     link: `mailto:${person.email}`,
@@ -52,21 +45,33 @@ const social = [
 
 const home = {
   path: "/",
- // image: "/images/og/home.jpg",
   label: "Home",
   title: `Portfolio de ${person.name}`,
   description: `Portfolio de ${person.name}, ${person.role} passionné par le pentesting, la sécurité réseau et le cloud.`,
   headline: <>Sécurité, Réseaux, Innovation.</>,
   featured: {
     display: true,
-    title: <>Projet Vedette: <strong className="ml-4">Audit de sécurité et tests d'intrusion dans un environnement réseau virtualisé à l'aide de pfSense et Kali Linux</strong></>,
-  href: "/work/mon-premier-projet",
-},
-   
+    title: (
+      <>
+        Projet Vedette:{" "}
+        <strong className="ml-4">
+          Audit de sécurité et tests d&apos;intrusion dans un environnement réseau virtualisé à
+          l&apos;aide de pfSense et Kali Linux
+        </strong>
+      </>
+    ),
+    href: "/",
+  },
   subline: (
     <>
-      Titulaire d'un Master en Ingénierie des Systèmes et Réseaux et de plusieurs Certifications comme le Cisco CCNA, je suis passionné par la sécurité des systèmes d'information et les technologies de pointe. J'utilise mes compétences pour concevoir des solutions robustes et sécurisées, tout en améliorant les performances et la fiabilité des infrastructures réseau.
-      <br />Je me spécialise dans l’audit de sécurité, les tests d’intrusion et la modernisation d’infrastructures réseau.
+      &quot;Titulaire d&apos;un Master en Ingénierie des Systèmes et Réseaux et de plusieurs
+      Certifications comme le Cisco CCNA, je suis passionné par la sécurité des systèmes
+      d&apos;information et les technologies de pointe. J&apos;utilise mes compétences pour
+      concevoir des solutions robustes et sécurisées, tout en améliorant les performances et la
+      fiabilité des infrastructures réseau.
+      <br />
+      Je me spécialise dans l&apos;audit de sécurité, les tests d&apos;intrusion et la
+      modernisation d&apos;infrastructures réseau.&quot;
     </>
   ),
 };
@@ -74,7 +79,7 @@ const home = {
 const about = {
   path: "/about",
   label: "About",
-  title: `A propos – ${person.name}`,
+  title: `À propos – ${person.name}`,
   description: `Meet ${person.name}, ${person.role} from ${person.location}`,
   tableOfContent: {
     display: true,
@@ -92,80 +97,129 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Je suis titulaire d'un Master Sécurité des Réseaux et Télécommunications. Je me passionne pour la cybersécurité, les environnements virtualisés, et le développement d’applications sécurisées. Actuellement, je travaille sur un projet de mémoire centré sur le pentesting et la remédiation des vulnérabilités d’un réseau d’entreprise.
+        Je suis titulaire d&apos;un Master Sécurité des Réseaux et Télécommunications. Je me
+        passionne pour la cybersécurité, les environnements virtualisés, et le développement
+        d&apos;applications sécurisées. Actuellement, je travaille sur un projet de mémoire centré
+        sur le pentesting et la remédiation des vulnérabilités d&apos;un réseau d&apos;entreprise.
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
-    title: "Experiences Professionnelles",
+    display: true,
+    title: "Expériences Professionnelles",
     experiences: [
       {
         company: "Agence Nationale de Télésanté et d’Informatique Médicale",
         timeframe: "2024 - Actuellement",
         role: "Ingénieur Réseaux et Systèmes",
         achievements: [
+          <>Audit et sécurisation du réseau informatique</>,
           <>
-            Audit et sécurisation du réseau informatique
+            Maintenance et surveillance des serveurs (optimisation des performances et détection
+            d&apos;incidents)
           </>,
           <>
-            Maintenance et surveillance des serveurs (optimisation des performances et détection d’incidents)
+            Gestion du parc informatique (mise en place de stratégies de gestion et
+            d&apos;amélioration)
           </>,
-          <>Gestion du parc informatique (mise en place de stratégies de gestion et d'amélioration)</>,
-          <> Participation active aux projets de cybersécurité et 
-          d’amélioration des infrastructures IT</>,
-          <>Création et Mise en place d’un serveur VOIP</>
+          <>
+            Participation active aux projets de cybersécurité et d&apos;amélioration des
+            infrastructures IT
+          </>,
+          <>Création et mise en place d&apos;un serveur VOIP</>,
         ],
       },
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Formations et Certifications",
     institutions: [
       {
         name: "SupManagement Mali",
-        description: <>Master en Ingénierie Réseaux, Systèmes et Télécommunications à l’Ecole Supérieure</>,
+        description: (
+          <>
+            Master en Ingénierie Réseaux, Systèmes et Télécommunications à l&apos;École Supérieure
+          </>
+        ),
       },
       {
         name: "SupManagement Maroc",
-        description: <>Licence en Ingénierie Réseaux, Systèmes et Télécommunications à l’Ecole Supérieure.</>,
+        description: (
+          <>
+            Licence en Ingénierie Réseaux, Systèmes et Télécommunications à l&apos;École
+            Supérieure.
+          </>
+        ),
       },
       {
         name: "Cisco Networking Academy",
-        description: <>Certification Cisco CCNA (Cisco Certified Network Associate) Enterprise Networking, 
-        Security, and Automation</>,
+        description: (
+          <>
+            Certification Cisco CCNA (Cisco Certified Network Associate) Enterprise Networking,
+            Security, and Automation
+          </>
+        ),
       },
       {
         name: "Cisco Networking Academy",
-        description: <>Certification Cisco Networking Academy: Network Security</>,
+        description: (
+          <>
+            Certification Cisco Networking Academy: Network Security
+          </>
+        ),
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Compétences Techniques",
     skills: [
       {
         title: "Administration Système",
-        description: <>Gestion des systèmes Linux et Windows, configuration de serveurs, virtualisation avec VMware et VirtualBox et conteneurisation Docker et LXC</>,
+        description: (
+          <>
+            Gestion des systèmes Linux et Windows, configuration de serveurs, virtualisation avec
+            VMware et VirtualBox et conteneurisation Docker et LXC
+          </>
+        ),
       },
       {
         title: "Sécurité des Réseaux",
-        description: <>Pentesting (Kali Linux, Nmap, Nessus, IDS/IPS, Wireshark, Burp Suite), système de gestion des informations et des événements de sécurité (SIEM)</>,
+        description: (
+          <>
+            Pentesting (Kali Linux, Nmap, Nessus, IDS/IPS, Wireshark, Burp Suite), système de
+            gestion des informations et des événements de sécurité (SIEM)
+          </>
+        ),
       },
       {
-        title: "IA & Prompt Engineering", 
-        description: <>Utilisation de l'IA pour l'automatisation des tâches, la détection des anomalies et l'amélioration de la sécurité des systèmes</>,
+        title: "IA & Prompt Engineering",
+        description: (
+          <>
+            Utilisation de l&apos;IA pour l&apos;automatisation des tâches, la détection des
+            anomalies et l&apos;amélioration de la sécurité des systèmes
+          </>
+        ),
       },
       {
         title: "Administration de Réseaux",
-        description: <>Configuration et gestion de routeurs, commutateurs, pare-feu (Cisco, pfSense), VPN, VLAN, QoS, DHCP, DNS</>,
+        description: (
+          <>
+            Configuration et gestion de routeurs, commutateurs, pare-feu (Cisco, pfSense), VPN,
+            VLAN, QoS, DHCP, DNS
+          </>
+        ),
       },
       {
-        title: "Développement d'Applications",
-        description: <>Développement d'applications web et mobiles sécurisées, intégration de systèmes de sécurité dans les applications, utilisation de frameworks modernes (React, Node.js)</>,
-      }
+        title: "Développement d&apos;Applications",
+        description: (
+          <>
+            Développement d&apos;applications web et mobiles sécurisées, intégration de systèmes de
+            sécurité dans les applications, utilisation de frameworks modernes (React, Node.js)
+          </>
+        ),
+      },
     ],
   },
 };
@@ -175,8 +229,6 @@ const blog = {
   label: "Blog",
   title: "Writing about design and tech...",
   description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
 };
 
 const work = {
@@ -184,8 +236,6 @@ const work = {
   label: "Work",
   title: `Projects – ${person.name}`,
   description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
 };
 
 const gallery = {
@@ -193,8 +243,6 @@ const gallery = {
   label: "Gallery",
   title: `Photo gallery – ${person.name}`,
   description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
   images: [
     {
       src: "/images/gallery/horizontal-1.jpg",
