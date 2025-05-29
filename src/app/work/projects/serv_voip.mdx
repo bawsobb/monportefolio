@@ -1,0 +1,59 @@
+---
+title: "Déploiement d’un serveur VOIP avec Asterisk"
+publishedAt: "2025-04-01"
+summary: "Installation, configuration et sécurisation d’un serveur VOIP basé sur Asterisk pour les communications internes d’une organisation."
+images:
+  - "/images/projects/project-01/voip.jpg"
+tech: ["Asterisk", "FreePBX", "SIP", "Linux", "Réseaux"]
+---
+
+## Overview
+
+Dans le cadre d’un besoin de modernisation des communications internes, j’ai conçu et déployé un serveur VOIP basé sur **Asterisk** permettant les appels IP entre collaborateurs, la gestion de la messagerie vocale et la supervision des appels.
+
+## 🏗️ Architecture mise en place
+
+- 💻 Un serveur sous **Debian Linux** hébergeant **Asterisk** et **FreePBX**
+- 📞 Des clients softphones (Zoiper, Linphone) connectés via **SIP**
+- 🌐 Connexion réseau sécurisée avec VLAN dédié VOIP
+- 🔒 Sécurisation avec **Fail2Ban**, **iptables**, **SIP TLS**
+
+##Fonctionnalites Deployees
+📞 Appels internes et externes via lignes SIP
+
+📁 Boîte vocale et transfert d’appel
+
+🎚️ File d’attente et musique d’attente personnalisée
+
+📊 Journalisation et supervision des appels
+
+🔐 Authentification et filtrage IP pour les extensions
+
+## Technologies Used
+
+- **Asterisk**: moteur VOIP open source
+- **FreePBXs***: interface de gestion web
+- **SIP**: protocole pour les appels voix
+- **Debian**: système d’exploitation du serveur
+- **Fail2Ban,iptables**:Pour la sécurité réseau
+
+## Challenges and Learnings
+Maîtrise de la VOIP en environnement professionnel
+
+Configuration avancée d’Asterisk et des fichiers sip.conf / extensions.conf
+
+Sécurisation d’un service critique exposé en réseau interne
+
+Dépannage des problèmes audio (NAT, codecs, etc.)
+
+## Outcome
+✅ Amélioration de la fluidité des communications internes
+
+📉 Réduction des coûts liés à la téléphonie externe
+
+📞 Plus de 20 extensions configurées et testées avec succès
+
+🔧 Facilité d’administration via FreePBX
+---
+Tags
+#VOIP #Asterisk #FreePBX #Réseaux #Linux #SIP

@@ -34,7 +34,7 @@ const social = [
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "www.linkedin.com/in/oumarbeng7",
+    link: "https://www.linkedin.com/in/oumarbeng7",
   },
   {
     name: "Email",
@@ -46,8 +46,8 @@ const social = [
 const home = {
   path: "/",
   label: "Home",
-  title: `Portfolio de ${person.name}`,
-  description: `Portfolio de ${person.name}, ${person.role} passionné par le pentesting, la sécurité réseau et le cloud.`,
+  title: `Bienvenue sur le portfolio de ${person.name}`,
+  description: `Portfolio de ${person.name},un passionné de sécurité et d'administration reseaux et systemes.`,
   headline: <>Sécurité, Réseaux, Innovation.</>,
   featured: {
     display: true,
@@ -212,7 +212,7 @@ const about = {
         ),
       },
       {
-        title: "Développement d&apos;Applications",
+        title: "Développement Applications",
         description: (
           <>
             Développement d&apos;applications web et mobiles sécurisées, intégration de systèmes de
