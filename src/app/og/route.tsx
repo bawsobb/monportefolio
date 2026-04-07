@@ -55,6 +55,7 @@ export async function GET(request: Request) {
         >
           <img
             src={baseURL + person.avatar}
+            alt={person.name} // Accessibilité : Ajout d'un texte alternatif pour les lecteurs d'écran
             style={{
               width: "12rem",
               height: "12rem",
