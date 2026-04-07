@@ -1,58 +1,62 @@
-# Portfolio – Oumar Bamory Bengaly
+🛡️ Portfolio Professionnel - Ingénierie Systèmes & SecOps
+Ce dépôt contient le code source de mon portfolio personnel, conçu pour mettre en valeur mon expertise en tant qu'ingénieur systèmes, réseaux et sécurité. Il ne s'agit pas seulement d'une vitrine visuelle, mais d'une démonstration de ma capacité à structurer des projets complexes et à documenter des solutions d'infrastructure critiques.
 
-Bienvenue sur mon portfolio personnel. Je suis **Oumar Bamory Bengaly**, ingénieur en Réseaux, Systèmes et Télécommunications basé à Bamako, Mali. Ce site présente mes projets, mes compétences techniques, ainsi que mes expériences dans le domaine de la cybersécurité et des télécommunications.
+🚀 Technologies utilisées
+Le portfolio est bâti sur une stack moderne privilégiant la performance et la modularité :
 
----
+Framework : Next.js (React)
 
-## 🔗 Aperçu en ligne
+Design System : Once UI — Pour une interface épurée et professionnelle.
 
-👉 [portfolio-bengaly.vercel.app](https://portfolio-bengaly.vercel.app) *(à remplacer après le déploiement)*
+Styling : Tailwind CSS
 
----
+Contenu : MDX (Markdown avec composants React) pour les études de cas.
 
-## 👤 À propos de moi
+Déploiement : Vercel
 
-- 🎓 Étudiant en Master Sécurité des Réseaux et Télécommunications
-- 💼 Stagiaire à l'**Agence Nationale de Télésanté et d'Informatique Médicale** (ANTIM)
-- 🔐 Passionné de cybersécurité, de pentesting et d'infrastructure réseau
-- 🎮 Fan de jeux vidéo, technologie et développement logiciel
+🌟 Études de Cas mises en avant
+Le site présente mes réalisations majeures, argumentées sous l'angle du défi technique et de l'impact métier :
 
----
+SOC Multi-tenant : Surveillance de sécurité et corrélation de logs avec Wazuh.
 
-## ✨ Fonctionnalités du site
+NOC Centralisé : Observabilité et monitoring de performance via Zabbix.
 
-- Portfolio de projets (réseaux, sécurité, design UI/UX, etc.)
-- Section à propos avec CV et parcours
-- Blog technique (bientôt disponible)
-- Galerie d'images
-- Design responsive avec **Next.js** et **Once UI**
+Restructuration d'Infrastructure : Optimisation de backbone (Multi-WAN Starlink/Fibre) et automatisation avec OPSI.
 
----
+Health Data : Gestion de bases de données critiques pour la télésanté (contexte ANTIM).
 
-## 🛠️ Technologies utilisées
+🛠️ Installation et Utilisation en local
+Pour explorer ou modifier le projet localement :
 
-- [Next.js](https://nextjs.org/)
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Once UI](https://once-ui.dev/) – Design system utilisé
+Cloner le dépôt :
 
----
+Bash
+git clone https://github.com/bawsobb/monportefolio.git
+cd monportefolio
+Installer les dépendances :
 
-## 🚀 Déploiement
+Bash
+npm install
+Lancer le serveur de développement :
 
-Le site est hébergé sur [Vercel](https://vercel.com), avec CI/CD intégré via GitHub.
+Bash
+npm run dev
+Accédez ensuite à http://localhost:3000.
 
----
+📂 Architecture du Projet
+src/app/resources/content.js : Le "cerveau" du site, centralisant toutes les données et textes.
 
-## 📬 Me contacter
+src/app/work/ : Répertoire des études de cas détaillées au format MDX.
 
-- ✉️ [bawsobb@gmail.com](mailto:bawsobb@gmail.com)
-- 🌐 [LinkedIn](https://www.linkedin.com/in/oumarbeng7)
-- 🐙 [GitHub](https://github.com/bawsobb)
+src/once-ui/ : Dossier contenant les composants atomiques du design system.
 
----
+🌍 Configuration Remote-Ready
+Ce projet a été développé et maintenu depuis une infrastructure autonome (100% solaire, fibre optique avec failover 4G), garantissant une disponibilité totale pour les collaborations internationales.
 
+👤 Contact
+Oumar Bamory Bengaly
+Ingénieur Systèmes & Sécurité | Spécialiste SecOps
 
-## 📄 Licence
+LinkedIn : oumarbeng7
 
-Ce projet est open-source et disponible sous la licence MIT.
+Portfolio Live : monportefolio-gules.vercel.app
