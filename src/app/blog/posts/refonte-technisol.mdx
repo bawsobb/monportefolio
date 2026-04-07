@@ -1,0 +1,71 @@
+---
+title: "Étude de Cas : Refonte Complète et Résilience Réseau chez Technisol Mali"
+publishedAt: "2026-02-07"
+summary: "Ingénierie d'une architecture Haute Disponibilité (99.9% uptime) mixant Starlink, PPPoE et Routage Récursif sur MikroTik."
+image: "/images/blog/reseau_technisol.png"
+tag: "Architecture Réseau"
+---
+## 1. Le Contexte et le Défi
+En 2025, l'infrastructure de Technisol-Mali devait s'adapter à une croissance rapide tout en faisant face à une connectivité locale instable. 
+
+L'audit initial a révélé des vulnérabilités critiques : routeurs grand public, absence de logs et un basculement de ligne (failover) manuel et lent. 
+
+L'objectif pour 2026 était clair : passer à une architecture de niveau **Entreprise** combinant Starlink, PPPoE, virtualisation Proxmox et sécurité proactive via Wazuh et Zabbix.
+
+![Schéma d'architecture réseau Technisol](/images/blog/reseau_technisol.png)
+
+
+## 2. Le Cœur du Réseau : SD-WAN Hybride et Routage Avancé
+Le cœur du réseau repose sur un **MikroTik RB4011**. 
+
+Le défi majeur était la gestion asymétrique :
+- **Starlink :** Très haut débit mais latence variable et CGNAT.
+
+- **Afribone (Fibre) :** IP publique fixe et haute stabilité.
+### La Solution : Le Routage Récursif
+Pour un failover automatique et infaillible, j'ai mis en place des routes récursives. 
+
+Un piège identifié était le conflit DNS lors de l'utilisation de l'IP 8.8.8.8 pour les tests de ligne. 
+
+La solution a été d'isoler le test sur **Quad9 (9.9.9.9)**.
+
+**Le correctif de routage :**
+```bash
+# Configuration du test de ligne via Quad9
+/ip route
+add comment="Check Starlink via Quad9" distance=1 dst-address=9.9.9.9/32 gateway=ether1-STARLINK
+add comment="LIGNE_PRINCIPALE_STARLINK" distance=1 gateway=9.9.9.9 check-gateway=ping
+```
+
+## 3. WireGuard et Routage Asymétrique (RouterOS v7)
+Le déploiement de WireGuard a révélé un problème complexe : le routeur recevait les requêtes par la Fibre mais tentait de répondre par Starlink (la route la plus rapide), brisant ainsi le handshake VPN.
+
+Pour résoudre ce syndrome, j'ai utilisé le marquage de connexions (Mangle) et les tables de routage FIB spécifiques à la version 7 de RouterOS.
+```bash
+# Forcer le trafic VPN à répondre par l'interface d'entrée (Fibre)
+/routing table add fib name=route_via_afribone
+/ip firewall mangle
+add action=mark-connection chain=input in-interface=pppoe-afribone new-connection-mark=conn_in_afribone
+add action=mark-routing chain=output connection-mark=conn_in_afribone new-routing-mark=route_via_afribone
+> ** Note Sécurité :** Le marquage de connexion est obligatoire ici car sans lui, le handshake WireGuard échouera systématiquement sur un lien Multi-WAN.
+```
+
+## 4. Sécurité IoT et SOC : Contrôler sans bloquer
+L'intégration de Wazuh (SOC) et AdGuard Home a rendu le réseau très strict, bloquant certains équipements IoT comme les terminaux Hikvision. Plutôt que d'ouvrir le réseau, j'ai appliqué des règles chirurgicales:
+
+- **Bypass DNS NAT :** Redirection forcée de l'IoT vers les DNS publics pour esquiver le filtrage AdGuard.
+
+- **Mangle Routing :** Forçage de ces équipements sur la Fibre pour éviter les micro-coupures de Starlink.
+```bash
+/ip firewall nat
+add action=dst-nat chain=dstnat comment="Bypass AdGuard - Interphone VIP" src-address=192.168.88.186 dst-port=53 protocol=udp to-addresses=8.8.8.8 place-before=0
+```
+
+## 5. Conclusion & Résultats
+L'infrastructure de Technisol est passée d'un mode réactif à une forteresse proactive:
+
+- **Disponibilité :** Failover automatique garantissant un accès continu aux serveurs Proxmox.
+
+- **Visibilité :** Chaque trame suspecte est catégorisée par le SIEM Wazuh et monitorée par Zabbix.
+
+- **Mobilité :** Télétravail sécurisé par WireGuard avec une segmentation VLAN stricte.

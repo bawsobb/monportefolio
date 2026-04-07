@@ -1,24 +1,29 @@
 ---
 title: "Restructuration d'Infrastructure : Résilience & SD-WAN"
-publishedAt: "2026-01-15"
-summary: "Refonte complète du backbone réseau et serveur : Multi-WAN (Starlink/Fibre), virtualisation Proxmox et automatisation OPSI."
+publishedAt: "2026-04-07"
+summary: "Refonte complète du backbone réseau et serveur : Multi-WAN (Starlink/Fibre), virtualisation Proxmox, sécurité Hikvision et intégration SOC/Wazuh."
 image: "/images/projects/mikrotik.png"
-tech: ["MikroTik", "Starlink", "WireGuard", "Proxmox", "OPSI", "Zabbix"]
+tech: ["MikroTik", "Starlink", "WireGuard", "Proxmox", "Zabbix", "Wazuh", "AdGuard"]
 ---
 
 ## Overview
-L'objectif était de transformer une infrastructure vieillissante en un environnement résilient, sécurisé et entièrement supervisé pour supporter les opérations critiques de Technisol.
+L'objectif de ce projet était de transformer l'infrastructure vieillissante de Technisol en un environnement de niveau "Enterprise" : résilient, hautement sécurisé et entièrement supervisé, capable de supporter les opérations critiques sans aucune interruption.
 
-## 🚀 Cœur de Réseau & Connectivité
-- **Edge Routing :** Déploiement de MikroTik RB4011 (OS 7.16) avec **Firewall Hardening**.
-- **Multi-WAN Hybride :** Agrégation de **Starlink** et Afribone avec routage récursif pour un basculement (failover) automatique en moins de 1s.
-- **VPN Moderne :** Remplacement des protocoles obsolètes par **WireGuard** pour des accès admin sécurisés et performants.
+## 🚀 Cœur de Réseau & Connectivité Multi-WAN
+- **Edge Routing (RouterOS v7) :** Déploiement d'un MikroTik RB4011 avec durcissement du pare-feu (Firewall Hardening) et gestion stricte des règles de `Forward` et `Input`.
+- **SD-WAN Hybride :** Agrégation de **Starlink** (Ligne Principale) et **Afribone Fibre** (Secours) avec routage récursif via Quad9 (`9.9.9.9`), assurant un basculement automatique et transparent en cas de perte de signal satellite.
+- **Accès Distant WireGuard :** Mise en place d'un tunnel VPN WireGuard pointant spécifiquement sur l'IP publique de la fibre. Résolution experte des problématiques de routage asymétrique et de "Handshake" liées au Multi-WAN via la déclaration explicite des tables `FIB` et des règles de marquage `Mangle`.
 
-## 🛡️ Services & Observabilité
-- **Virtualisation :** Migration des services critiques vers un cluster **Proxmox VE** pour une agilité maximale.
-- **NOC/SOC :** Monitoring de performance via **Zabbix (SNMP v3)** et analyse de sécurité via **Wazuh (Syslog)**.
-- **Gouvernance :** Centralisation du DNS via **AdGuard Home** pour le filtrage des menaces et l'optimisation du LAN.
+## 🛡️ Sécurité & SOC (Wazuh)
+- **Catégorisation des Logs Firewall :** Optimisation des logs MikroTik pour éliminer le bruit (Broadcast/Multicast silencieux) et création de préfixes d'audit (`FW_DROP_INVALID`, `FW_DROP_BLACKLIST`) pour alimenter le SIEM Wazuh avec des données qualifiées.
+- **Micro-segmentation & IoT :** Isolation des équipements de sécurité physiques (Terminaux faciaux et interphones Hikvision). 
+- **Fiabilisation Cloud IoT :** Création de règles de routage spécifiques forçant le trafic Hikvision sur la connexion fibre pour éviter les micro-coupures Starlink, et mise en place d'un "Bypass" DNS NAT pour éviter les blocages de télémétrie.
 
-## 🤖 Automatisation & Gestion
-- **Déploiement :** Mise en place d'un serveur **OPSI** pour le déploiement automatisé d'OS (PXE) et la gestion logicielle.
+## 📡 Services & Observabilité (Proxmox)
+- **Virtualisation :** Migration des services critiques vers un cluster **Proxmox VE** pour une flexibilité maximale (VLAN 20).
+- **Monitoring NOC :** Déploiement de **Zabbix** pour la surveillance active de l'infrastructure, avec configuration des alertes SMTP automatisées (via contournement de la configuration Netplan/DNS locale).
+- **Gouvernance DNS :** Déploiement d'**AdGuard Home** pour bloquer les menaces à la source, avec gestion fine des listes blanches (ex: contournement pour les services Cloud spécifiques).
+
+## 🤖 Automatisation & Gestion (Legacy)
+- **Déploiement :** Intégration d'un serveur **OPSI** pour le déploiement automatisé d'OS (PXE) et la gestion logicielle.
 - **Asset Management :** Inventaire exhaustif et ticketing via **GLPI**.

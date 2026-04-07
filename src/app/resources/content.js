@@ -202,8 +202,8 @@ technical: {
 const blog = {
   path: "/blog",
   label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
+  title: "Security & Infrastructure Deep Dives",
+  description: "Documentation technique, analyses SecOps et retours d'expérience sur l'administration d'infrastructures critiques.",
 };
 
 const work = {
