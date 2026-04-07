@@ -48,14 +48,14 @@ const home = {
   label: "Home",
   title: `${person.name} - Ingénieur Systèmes & Sécurité`,
   description: `Portfolio de ${person.name}, expert en infrastructures critiques et SecOps, 100% Remote-Ready.`,
-  headline: <>Ingénieur d'Infrastructures Résilientes et Sécurisées</>,
+  headline: <>{"Ingénieur d'Infrastructures Résilientes et Sécurisées"}</>,
   featured: {
     display: true,
     title: (
       <>
         Projet Vedette:{" "}
         <strong className="ml-4">
-          Déploiement d'un SOC Multi-tenant (Wazuh & Zabbix)
+          {"Déploiement d'un SOC Multi-tenant (Wazuh & Zabbix)"}
         </strong>
       </>
     ),
@@ -64,7 +64,7 @@ const home = {
   subline: (
     <>
       Spécialiste SecOps et Infrastructures réseaux, je conçois des solutions de haute disponibilité et des centres de surveillance (SOC). 
-      Titulaire d'un Master et certifié CCNA, je garantis une continuité de service totale grâce à une infrastructure 100% autonome (Solaire & Fibre).
+      {" Titulaire d'un Master et certifié CCNA, je garantis une continuité de service totale grâce à une infrastructure 100% autonome (Solaire & Fibre)."}
     </>
   ),
 };
@@ -90,10 +90,10 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Basé à Bamako (GMT+0), j'opère des infrastructures critiques pour des clients nationaux et internationaux.
+        {"Basé à Bamako (GMT+0), j'opère des infrastructures critiques pour des clients nationaux et internationaux."} <br />
         Ingénieur systèmes et réseaux (Master) orienté résultats, spécialisé en cybersécurité, administration réseau et infrastructures informatiques. <br />
-        Expertise confirmée en audit de systèmes selon les référentiels internationaux (ISO 27001, NIST) et en gestion d'environnements critiques multi-clients.<br /> 
-        Spécialisé dans le déploiement et la gestion d'architectures SOC mutualisées avec Wazuh et Zabbix pour la détection proactive des menaces. <br />
+        {"Expertise confirmée en audit de systèmes selon les référentiels internationaux (ISO 27001, NIST) et en gestion d'environnements critiques multi-clients."}<br /> 
+        {"Spécialisé dans le déploiement et la gestion d'architectures SOC mutualisées avec Wazuh et Zabbix pour la détection proactive des menaces."} <br />
         Maîtrise des environnements serveurs Windows/Linux, de la virtualisation (Proxmox, VMware), de la sécurité du cloud (Microsoft 365), de la communication asynchrone et de la documentation technique (Markdown, Wiki, base de connaissances GLPI).<br />
         Mon laboratoire est entièrement alimenté par un système solaire, garantissant un uptime de 100% pour mes opérations à distance.
       </>
@@ -108,7 +108,7 @@ const about = {
         timeframe: "Août 2025 - Actuellement",
         role: "Administrateur Systèmes et Réseaux",
         achievements: [
-          <>Déploiement d'un SOC centralisé via Wazuh et Zabbix pour la détection proactive des menaces sur plusieurs infrastructures clients.</>,
+          <>{"Déploiement d'un SOC centralisé via Wazuh et Zabbix pour la détection proactive des menaces sur plusieurs infrastructures clients."}</>,
           <>Gestion de serveurs Proxmox sur matériel HPE Proliant pour des environnements de production.</>,
           <>Automatisation du déploiement logiciel via un serveur OPSI.</>,
           <>Sauvegardes manuelles et automatisées (NAS, Microsoft 365) avec tests de restauration.</>,
@@ -124,7 +124,7 @@ const about = {
         role: "Ingénieur Réseaux et Systèmes",
         achievements: [
           <>Audit et sécurisation des données de santé nationales selon les standards ISO 27001.</>,
-          <>Surveillance et durcissement d'infrastructures critiques pour la télémédecine.</>,
+          <>{ "Surveillance et durcissement d'infrastructures critiques pour la télémédecine." }</>,
           <>Participation active aux projets de cybersécurité et d&apos;amélioration des infrastructures IT</>,
           <>Implémentation, configuration et maintenance de la base de données de la flotte mobile des agents de santé sur toute l’étendue du territoire nationale.</>,
           <>Création et mise en place d&apos;un serveur VOIP</>,
