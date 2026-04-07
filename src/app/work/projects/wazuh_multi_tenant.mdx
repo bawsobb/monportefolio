@@ -1,0 +1,18 @@
+---
+title: "SOC Multi-tenant : Détection d'Intrusions & Conformité"
+publishedAt: "2025-05-10"
+summary: "Centralisation de la sécurité pour 10+ infrastructures clientes. Détection d'incidents en temps réel et corrélation de logs."
+tech: ["Wazuh", "SIEM", "Suricata", "Linux Hardening", "Elasticstack"]
+---
+
+## 🎯 Le Défi
+Comment surveiller la sécurité de plusieurs entreprises indépendantes sans mélanger leurs données et en restant alerté 24/7 sur les activités suspectes ?
+
+## 🛠️ Choix Techniques & Argumentation
+- **Isolation Multi-tenant :** Configuration de groupes d'agents spécifiques par client. Chaque flux de logs est étiqueté et isolé pour garantir la confidentialité entre les infrastructures.
+- **Corrélation de Logs :** Mise en place de règles personnalisées pour détecter les attaques Brute-force sur SSH/RDP et les modifications de fichiers critiques (FIM).
+- **Réponse Active :** Configuration de scripts de réponse automatique pour bannir les IP malveillantes via le pare-feu dès la détection d'une menace avérée.
+
+## 📈 Valeur Ajoutée
+- **Visibilité Totale :** Un tableau de bord unique permettant de voir l'état de sécurité de tout le parc en un coup d'œil.
+- **Souveraineté :** Données stockées localement sur Proxmox, évitant les coûts et les risques liés aux SIEM cloud propriétaires.

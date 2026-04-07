@@ -7,9 +7,9 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Ingénieur Réseaux Systèmes et Télécommunications",
+  role: "Ingénieur Réseaux,Systèmes & Sécurité | Spécialiste SecOps", // Plus impactant
   avatar: "/images/avatar.jpg",
-  email: "bawsobb@gmail.com",
+  email: "bawsobb@proton.me", // Mis à jour selon tes préférences de candidature
   location: "Africa/Bamako",
   languages: ["Français", "Anglais"],
 };
@@ -46,32 +46,25 @@ const social = [
 const home = {
   path: "/",
   label: "Home",
-  title: `Bienvenue sur le portfolio de ${person.name}`,
-  description: `Portfolio de ${person.name},un passionné de sécurité et d'administration reseaux et systemes.`,
-  headline: <>Sécurité, Réseaux, Innovation.</>,
+  title: `${person.name} - Ingénieur Systèmes & Sécurité`,
+  description: `Portfolio de ${person.name}, expert en infrastructures critiques et SecOps, 100% Remote-Ready.`,
+  headline: <>Ingénieur d'Infrastructures Résilientes et Sécurisées</>,
   featured: {
     display: true,
     title: (
       <>
         Projet Vedette:{" "}
         <strong className="ml-4">
-          Audit de sécurité et tests d&apos;intrusion dans un environnement réseau virtualisé à
-          l&apos;aide de pfSense et Kali Linux
+          Déploiement d'un SOC Multi-tenant (Wazuh & Zabbix)
         </strong>
       </>
     ),
-    href: "/",
+    href: "/work",
   },
   subline: (
     <>
-      &quot;Titulaire d&apos;un Master en Ingénierie des Systèmes et Réseaux et de plusieurs
-      Certifications comme le Cisco CCNA, je suis passionné par la sécurité des systèmes
-      d&apos;information et les technologies de pointe. J&apos;utilise mes compétences pour
-      concevoir des solutions robustes et sécurisées, tout en améliorant les performances et la
-      fiabilité des infrastructures réseau.
-      <br />
-      Je me spécialise dans l&apos;audit de sécurité, les tests d&apos;intrusion et la
-      modernisation d&apos;infrastructures réseau.&quot;
+      Spécialiste SecOps et Infrastructures réseaux, je conçois des solutions de haute disponibilité et des centres de surveillance (SOC). 
+      Titulaire d'un Master et certifié CCNA, je garantis une continuité de service totale grâce à une infrastructure 100% autonome (Solaire & Fibre).
     </>
   ),
 };
@@ -97,10 +90,12 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Je suis titulaire d&apos;un Master Sécurité des Réseaux et Télécommunications. Je me
-        passionne pour la cybersécurité, les environnements virtualisés, et le développement
-        d&apos;applications sécurisées. Actuellement, je travaille sur un projet de mémoire centré
-        sur le pentesting et la remédiation des vulnérabilités d&apos;un réseau d&apos;entreprise.
+        Basé à Bamako (GMT+0), j'opère des infrastructures critiques pour des clients nationaux et internationaux.
+        Ingénieur systèmes et réseaux (Master) orienté résultats, spécialisé en cybersécurité, administration réseau et infrastructures informatiques. <br />
+        Expertise confirmée en audit de systèmes selon les référentiels internationaux (ISO 27001, NIST) et en gestion d'environnements critiques multi-clients.<br /> 
+        Spécialisé dans le déploiement et la gestion d'architectures SOC mutualisées avec Wazuh et Zabbix pour la détection proactive des menaces. <br />
+        Maîtrise des environnements serveurs Windows/Linux, de la virtualisation (Proxmox, VMware), de la sécurité du cloud (Microsoft 365), de la communication asynchrone et de la documentation technique (Markdown, Wiki, base de connaissances GLPI).<br />
+        Mon laboratoire est entièrement alimenté par un système solaire, garantissant un uptime de 100% pour mes opérations à distance.
       </>
     ),
   },
@@ -109,23 +104,29 @@ const about = {
     title: "Expériences Professionnelles",
     experiences: [
       {
+        company: "Sini-Tech / Technisol-Mali",
+        timeframe: "Août 2025 - Actuellement",
+        role: "Administrateur Systèmes et Réseaux",
+        achievements: [
+          <>Déploiement d'un SOC centralisé via Wazuh et Zabbix pour la détection proactive des menaces sur plusieurs infrastructures clients.</>,
+          <>Gestion de serveurs Proxmox sur matériel HPE Proliant pour des environnements de production.</>,
+          <>Automatisation du déploiement logiciel via un serveur OPSI.</>,
+          <>Sauvegardes manuelles et automatisées (NAS, Microsoft 365) avec tests de restauration.</>,
+          <>Support IT et Gestion du parc informatique automatisé (GLPI : gestion des tickets, utilisateurs, techniciens, admins).</>,
+          <>Surveillance & sécurisation via Wazuh, Bitdefender GravityZone, Suricata, MikroTik Winbox.</>,
+          <>Administration Microsoft 365 SharePoint, Entra ID, Azure AD, Exchange Online.</>,
+          <>Mise en œuvre de politiques de sécurité réseau, participation aux audits techniques, élaboration de procédures de remédiation et documentations selon les normes et cadres internationaux (ITIL, ISO9001, NIST)</>,
+        ],
+      },
+      {
         company: "Agence Nationale de Télésanté et d’Informatique Médicale",
-        timeframe: "2024 - Actuellement",
+        timeframe: "2024 - Août 2025",
         role: "Ingénieur Réseaux et Systèmes",
         achievements: [
-          <>Audit et sécurisation du réseau informatique</>,
-          <>
-            Maintenance et surveillance des serveurs (optimisation des performances et détection
-            d&apos;incidents)
-          </>,
-          <>
-            Gestion du parc informatique (mise en place de stratégies de gestion et
-            d&apos;amélioration)
-          </>,
-          <>
-            Participation active aux projets de cybersécurité et d&apos;amélioration des
-            infrastructures IT
-          </>,
+          <>Audit et sécurisation des données de santé nationales selon les standards ISO 27001.</>,
+          <>Surveillance et durcissement d'infrastructures critiques pour la télémédecine.</>,
+          <>Participation active aux projets de cybersécurité et d&apos;amélioration des infrastructures IT</>,
+          <>Implémentation, configuration et maintenance de la base de données de la flotte mobile des agents de santé sur toute l’étendue du territoire nationale.</>,
           <>Création et mise en place d&apos;un serveur VOIP</>,
         ],
       },
@@ -139,7 +140,7 @@ const about = {
         name: "SupManagement Mali",
         description: (
           <>
-            Master en Ingénierie Réseaux, Systèmes et Télécommunications à l&apos;École Supérieure
+            Master en Ingénierie Réseaux, Systèmes et Télécommunications
           </>
         ),
       },
@@ -147,8 +148,7 @@ const about = {
         name: "SupManagement Maroc",
         description: (
           <>
-            Licence en Ingénierie Réseaux, Systèmes et Télécommunications à l&apos;École
-            Supérieure.
+            Licence en Ingénierie Réseaux, Systèmes et Télécommunications
           </>
         ),
       },
@@ -171,56 +171,31 @@ const about = {
       },
     ],
   },
-  technical: {
-    display: true,
-    title: "Compétences Techniques",
-    skills: [
-      {
-        title: "Administration Système",
-        description: (
-          <>
-            Gestion des systèmes Linux et Windows, configuration de serveurs, virtualisation avec
-            VMware et VirtualBox et conteneurisation Docker et LXC
-          </>
-        ),
-      },
-      {
-        title: "Sécurité des Réseaux",
-        description: (
-          <>
-            Pentesting (Kali Linux, Nmap, Nessus, IDS/IPS, Wireshark, Burp Suite), système de
-            gestion des informations et des événements de sécurité (SIEM)
-          </>
-        ),
-      },
-      {
-        title: "IA & Prompt Engineering",
-        description: (
-          <>
-            Utilisation de l&apos;IA pour l&apos;automatisation des tâches, la détection des
-            anomalies et l&apos;amélioration de la sécurité des systèmes
-          </>
-        ),
-      },
-      {
-        title: "Administration de Réseaux",
-        description: (
-          <>
-            Configuration et gestion de routeurs, commutateurs, pare-feu (Cisco, pfSense), VPN,
-            VLAN, QoS, DHCP, DNS
-          </>
-        ),
-      },
-      {
-        title: "Développement Applications",
-        description: (
-          <>
-            Développement d&apos;applications web et mobiles sécurisées, intégration de systèmes de
-            sécurité dans les applications, utilisation de frameworks modernes (React, Node.js)
-          </>
-        ),
-      },
-    ],
+technical: {
+        display: true,
+        title: "Expertises & Piliers Techniques",
+ skills: [
+            {
+                title: "Sécurité & SecOps",
+                description: "Maîtrise de la surveillance proactive et de la réponse aux incidents. Expert en déploiement de SIEM multi-tenant (Wazuh).",
+                badges: ["Wazuh", "Suricata", "Audit de sécurité", "ISO 27001"]
+            },
+            {
+                title: "Infrastructures Réseaux",
+                description: "Conception de backbones résilients et gestion du failover transparent (Starlink/Fibre) sur MikroTik.",
+                badges: ["MikroTik", "Cisco CCNA", "WireGuard", "Multi-WAN"]
+            },
+            {
+                title: "Virtualisation & Systèmes",
+                description: "Administration d'environnements critiques sous Proxmox VE et VMware. Optimisation de serveurs HPE ProLiant.",
+                badges: ["Proxmox", "VMware", "Linux", "HPE ProLiant"]
+            },
+            {
+                title: "Observabilité & Automatisation",
+                description: "Monitoring proactif avec Zabbix et automatisation du cycle de vie des systèmes via OPSI.",
+                badges: ["Zabbix", "OPSI", "Python", "Docker"]
+            }
+        ]
   },
 };
 

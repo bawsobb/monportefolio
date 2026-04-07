@@ -1,0 +1,24 @@
+---
+title: "Restructuration d'Infrastructure : Résilience & SD-WAN"
+publishedAt: "2026-01-15"
+summary: "Refonte complète du backbone réseau et serveur : Multi-WAN (Starlink/Fibre), virtualisation Proxmox et automatisation OPSI."
+image: "/images/projects/mikrotik.png"
+tech: ["MikroTik", "Starlink", "WireGuard", "Proxmox", "OPSI", "Zabbix"]
+---
+
+## Overview
+L'objectif était de transformer une infrastructure vieillissante en un environnement résilient, sécurisé et entièrement supervisé pour supporter les opérations critiques de Technisol.
+
+## 🚀 Cœur de Réseau & Connectivité
+- **Edge Routing :** Déploiement de MikroTik RB4011 (OS 7.16) avec **Firewall Hardening**.
+- **Multi-WAN Hybride :** Agrégation de **Starlink** et Afribone avec routage récursif pour un basculement (failover) automatique en moins de 1s.
+- **VPN Moderne :** Remplacement des protocoles obsolètes par **WireGuard** pour des accès admin sécurisés et performants.
+
+## 🛡️ Services & Observabilité
+- **Virtualisation :** Migration des services critiques vers un cluster **Proxmox VE** pour une agilité maximale.
+- **NOC/SOC :** Monitoring de performance via **Zabbix (SNMP v3)** et analyse de sécurité via **Wazuh (Syslog)**.
+- **Gouvernance :** Centralisation du DNS via **AdGuard Home** pour le filtrage des menaces et l'optimisation du LAN.
+
+## 🤖 Automatisation & Gestion
+- **Déploiement :** Mise en place d'un serveur **OPSI** pour le déploiement automatisé d'OS (PXE) et la gestion logicielle.
+- **Asset Management :** Inventaire exhaustif et ticketing via **GLPI**.

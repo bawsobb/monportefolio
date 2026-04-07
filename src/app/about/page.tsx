@@ -240,29 +240,37 @@ export default function About() {
             </>
           )}
 
-          {about.technical.display && (
-            <>
-              <Heading
-                as="h2"
-                id={about.technical.title}
-                variant="display-strong-s"
-                marginBottom="40"
-              >
-                {about.technical.title}
-              </Heading>
-              <Column fillWidth gap="l">
-                {about.technical.skills.map((skill, index) => (
-                  <Column key={`${skill}-${index}`} fillWidth gap="4">
-                    <Text variant="heading-strong-l">{skill.title}</Text>
-                    <Text variant="body-default-m" onBackground="neutral-weak">
-                      {skill.description}
-                    </Text>
-                 
-                  </Column>
-                ))}
-              </Column>
-            </>
-          )}
+{about.technical.display && (
+  <>
+    <Heading
+      as="h2"
+      id={about.technical.title}
+      variant="display-strong-s"
+      marginBottom="40"
+    >
+      {about.technical.title}
+    </Heading>
+    <Column fillWidth gap="xl">
+{about.technical.skills.map((skill, index) => (
+  <Column key={`${skill.title}-${index}`} fillWidth gap="16">
+    <Text variant="heading-strong-l">{skill.title}</Text>
+    <Text variant="body-default-m" onBackground="neutral-weak">
+      {skill.description}
+    </Text>
+    
+    <Flex wrap="wrap" gap="8">
+      {/* On ajoute ?. pour vérifier que badges existe avant de mapper */}
+      {skill.badges?.map((badge, i) => (
+        <Tag key={i} variant="neutral" size="m">
+          {badge}
+        </Tag>
+      ))}
+    </Flex>
+  </Column>
+))}
+    </Column>
+  </>
+)}
         </Column>
       </Flex>
     </Column>

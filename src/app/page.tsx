@@ -36,6 +36,12 @@ export default function Home() {
       />
       <Column fillWidth paddingY="24" gap="m">
         <Column maxWidth="s">
+        {/* Ajout des badges de fiabilité */}
+        <Flex gap="8" marginBottom="16" wrap="wrap">
+          <Badge variant="success" size="s">☀️ 100% Solar Powered</Badge>
+          <Badge variant="info" size="s">🌐 Fiber + 4G Failover</Badge>
+          <Badge variant="neutral" size="s">🌍 GMT+0 (Remote)</Badge>
+        </Flex>
           {home.featured && (
           <RevealFx fillWidth horizontal="start" paddingTop="16" paddingBottom="32" paddingLeft="12">
             <Badge background="brand-alpha-weak" paddingX="12" paddingY="4" onBackground="neutral-strong" textVariant="label-default-s" arrow={false}
