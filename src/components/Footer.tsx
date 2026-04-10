@@ -1,9 +1,12 @@
+"use client";
+
 import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
-import { person, social } from "@/app/resources/content";
 import styles from "./Footer.module.scss";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
   return (
     <Flex
@@ -24,10 +27,10 @@ export const Footer = () => {
       >
         <Text variant="body-default-s" onBackground="neutral-strong">
           <Text onBackground="neutral-weak">© {currentYear} /</Text>
-          <Text paddingX="4">{person.name}</Text>
+          <Text paddingX="4">{t.person.name}</Text>
           <Text onBackground="neutral-weak">
             {/* Usage of this template requires attribution. Please don't remove the link to Once UI. */}
-            / Build your portfolio with{" "}
+            / {t.locale === 'fr' ? 'Créez votre portfolio avec' : 'Build your portfolio with'}{" "}
             <SmartLink
               href="https://once-ui.com/templates/magic-portfolio"
             >
@@ -36,8 +39,8 @@ export const Footer = () => {
           </Text>
         </Text>
         <Flex gap="16">
-          {social.map(
-            (item) =>
+          {t.social.map(
+            (item: any) =>
               item.link && (
                 <IconButton
                   key={item.name}

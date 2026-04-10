@@ -10,7 +10,11 @@ interface PostProps {
     direction?: "row" | "column";
 }
 
+import { useTranslation } from '@/context/LanguageContext';
+
 export default function Post({ post, thumbnail, direction }: PostProps) {
+    const { locale } = useTranslation();
+
     return (
         <SmartLink
             fillWidth
@@ -53,7 +57,7 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
                     <Text
                         variant="label-default-s"
                         onBackground="neutral-weak">
-                        {formatDate(post.metadata.publishedAt, false)}
+                        {formatDate(post.metadata.publishedAt, false, locale)}
                     </Text>
                     { post.metadata.tag &&
                         <Tag
@@ -65,4 +69,4 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
             </Flex>
         </SmartLink>
     );
-}
+}

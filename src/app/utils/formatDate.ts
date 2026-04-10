@@ -1,4 +1,4 @@
-export function formatDate(date: string, includeRelative = false) {
+export function formatDate(date: string, includeRelative = false, locale: 'en' | 'fr' = 'fr') {
   // CORRECTIF : Si la date est undefined, null ou vide, on arrête la fonction immédiatement
   if (!date || typeof date !== 'string') {
     return ""; 
@@ -25,16 +25,16 @@ export function formatDate(date: string, includeRelative = false) {
   let formattedDate = "";
 
   if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`;
+    formattedDate = locale === 'fr' ? `il y a ${yearsAgo} an${yearsAgo > 1 ? 's' : ''}` : `${yearsAgo}y ago`;
   } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`;
+    formattedDate = locale === 'fr' ? `il y a ${monthsAgo} mois` : `${monthsAgo}mo ago`;
   } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`;
+    formattedDate = locale === 'fr' ? `il y a ${daysAgo} jour${daysAgo > 1 ? 's' : ''}` : `${daysAgo}d ago`;
   } else {
-    formattedDate = "Today";
+    formattedDate = locale === 'fr' ? "Aujourd'hui" : "Today";
   }
 
-  const fullDate = targetDate.toLocaleString("en-us", {
+  const fullDate = targetDate.toLocaleString(locale === 'fr' ? "fr-FR" : "en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",

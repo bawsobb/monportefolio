@@ -9,6 +9,8 @@ import styles from "@/components/Header.module.scss";
 import { routes, display } from "@/app/resources";
 import { person, about, blog, work, gallery } from "@/app/resources/content";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useTranslation } from "@/context/LanguageContext";
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -41,10 +43,9 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" })
   return <>{currentTime}</>;
 };
 
-export default TimeDisplay;
-
 export const Header = () => {
   const pathname = usePathname() ?? "";
+  const { t, locale } = useTranslation();
 
   return (
     <>
@@ -62,7 +63,7 @@ export const Header = () => {
         data-border="rounded"
       >
         <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
-          {display.location && <Flex hide="s">{person.location}</Flex>}
+          {display.location && <Flex hide="s">{t.person.location}</Flex>}
         </Flex>
         <Flex fillWidth horizontal="center">
           <Flex
@@ -85,7 +86,7 @@ export const Header = () => {
                     className="s-flex-hide"
                     prefixIcon="person"
                     href="/about"
-                    label={about.label}
+                    label={t.about.label}
                     selected={pathname === "/about"}
                   />
                   <ToggleButton
@@ -102,7 +103,7 @@ export const Header = () => {
                     className="s-flex-hide"
                     prefixIcon="grid"
                     href="/work"
-                    label={work.label}
+                    label={t.work.label}
                     selected={pathname.startsWith("/work")}
                   />
                   <ToggleButton
@@ -119,7 +120,7 @@ export const Header = () => {
                     className="s-flex-hide"
                     prefixIcon="book"
                     href="/blog"
-                    label={blog.label}
+                    label={t.blog.label}
                     selected={pathname.startsWith("/blog")}
                   />
                   <ToggleButton
@@ -136,7 +137,7 @@ export const Header = () => {
                     className="s-flex-hide"
                     prefixIcon="gallery"
                     href="/gallery"
-                    label={gallery.label}
+                    label={t.gallery.label}
                     selected={pathname.startsWith("/gallery")}
                   />
                   <ToggleButton
@@ -147,6 +148,8 @@ export const Header = () => {
                   />
                 </>
               )}
+              <Line background="neutral-alpha-medium" vert maxHeight="24" />
+              <LanguageSwitcher />
               {display.themeSwitcher && (
                 <>
                   <Line background="neutral-alpha-medium" vert maxHeight="24" />
@@ -164,7 +167,7 @@ export const Header = () => {
             textVariant="body-default-s"
             gap="20"
           >
-            <Flex hide="s">{display.time && <TimeDisplay timeZone={person.location} />}</Flex>
+            <Flex hide="s">{display.time && <TimeDisplay timeZone={t.person.location} locale={locale === 'en' ? 'en-GB' : 'fr-FR'} />}</Flex>
           </Flex>
         </Flex>
       </Flex>

@@ -10,6 +10,8 @@ import {
   Text,
 } from "@/once-ui/components";
 
+import { useTranslation } from "@/context/LanguageContext";
+
 interface ProjectCardProps {
   href: string;
   priority?: boolean;
@@ -30,6 +32,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   avatars,
   link,
 }) => {
+  const { locale } = useTranslation();
+
   return (
     <Column fillWidth gap="m">
       <Carousel
@@ -69,7 +73,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={href}
                 >
-                  <Text variant="body-default-s">Read case study</Text>
+                  <Text variant="body-default-s">
+                    {locale === 'fr' ? 'Lire l\'étude de cas' : 'Read case study'}
+                  </Text>
                 </SmartLink>
               )}
               {link && (
@@ -78,7 +84,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={link}
                 >
-                  <Text variant="body-default-s">View project</Text>
+                  <Text variant="body-default-s">
+                    {locale === 'fr' ? 'Voir le projet' : 'View project'}
+                  </Text>
                 </SmartLink>
               )}
             </Flex>

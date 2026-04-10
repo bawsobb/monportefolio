@@ -6,66 +6,78 @@ import {
   Heading,
   Icon,
   IconButton,
-  SmartImage,
   Tag,
   Text,
 } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
-import { person, about, social } from "@/app/resources/content";
 import React from "react";
-import { Meta, Schema } from "@/once-ui/modules";
+import { Schema, Meta } from "@/once-ui/modules";
+import { cookies } from "next/headers";
+import { person as personEn, about as aboutEn, social as socialEn } from "@/app/resources/content-en";
+import { person as personFr, about as aboutFr, social as socialFr } from "@/app/resources/content-fr";
 
 export async function generateMetadata() {
+  const cookieStore = await cookies();
+  const locale = cookieStore.get("locale")?.value || "fr";
+  const content = locale === "en" ? aboutEn : aboutFr;
+
   return Meta.generate({
-    title: about.title,
-    description: about.description,
+    title: content.title,
+    description: content.description,
     baseURL: baseURL,
-    image: `${baseURL}/og?title=${encodeURIComponent(about.title)}`,
-    path: about.path,
+    image: `${baseURL}/og?title=${encodeURIComponent(content.title)}`,
+    path: content.path,
   });
 }
 
-export default function About() {
+export default async function About() {
+  const cookieStore = await cookies();
+  const locale = (cookieStore.get("locale")?.value as "en" | "fr") || "fr";
+  const t = locale === "en" 
+    ? { person: personEn, about: aboutEn, social: socialEn, locale: 'en' } 
+    : { person: personFr, about: aboutFr, social: socialFr, locale: 'fr' };
+
   const structure = [
     {
-      title: about.intro.title,
-      display: about.intro.display,
+      title: t.about.intro.title,
+      display: t.about.intro.display,
       items: [],
     },
     {
-      title: about.work.title,
-      display: about.work.display,
-      items: about.work.experiences.map((experience) => experience.company),
+      title: t.about.work.title,
+      display: t.about.work.display,
+      items: t.about.work.experiences.map((experience: any) => experience.company),
     },
     {
-      title: about.studies.title,
-      display: about.studies.display,
-      items: about.studies.institutions.map((institution) => institution.name),
+      title: t.about.studies.title,
+      display: t.about.studies.display,
+      items: t.about.studies.institutions.map((institution: any) => institution.name),
     },
     {
-      title: about.technical.title,
-      display: about.technical.display,
-      items: about.technical.skills.map((skill) => skill.title),
+      title: t.about.technical.title,
+      display: t.about.technical.display,
+      items: t.about.technical.skills.map((skill: any) => skill.title),
     },
   ];
+
   return (
     <Column maxWidth="m">
       <Schema
         as="webPage"
         baseURL={baseURL}
-        title={about.title}
-        description={about.description}
-        path={about.path}
-        image={`${baseURL}/og?title=${encodeURIComponent(about.title)}`}
+        title={t.about.title}
+        description={t.about.description}
+        path={t.about.path}
+        image={`${baseURL}/og?title=${encodeURIComponent(t.about.title)}`}
         author={{
-          name: person.name,
-          url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
+          name: t.person.name,
+          url: `${baseURL}${t.about.path}`,
+          image: `${baseURL}${t.person.avatar}`,
         }}
       />
-      {about.tableOfContent.display && (
+      {t.about.tableOfContent.display && (
         <Column
           left="0"
           style={{ top: "50%", transform: "translateY(-50%)" }}
@@ -74,11 +86,11 @@ export default function About() {
           gap="32"
           hide="s"
         >
-          <TableOfContents structure={structure} about={about} />
+          <TableOfContents structure={structure} about={t.about} />
         </Column>
       )}
       <Flex fillWidth mobileDirection="column" horizontal="center">
-        {about.avatar.display && (
+        {t.about.avatar.display && (
           <Column
             className={styles.avatar}
             position="sticky"
@@ -89,14 +101,14 @@ export default function About() {
             flex={3}
             horizontal="center"
           >
-            <Avatar src={person.avatar} size="xl" />
+            <Avatar src={t.person.avatar} size="xl" />
             <Flex gap="8" vertical="center">
               <Icon onBackground="accent-weak" name="globe" />
-              {person.location}
+              {t.person.location}
             </Flex>
-            {person.languages.length > 0 && (
+            {t.person.languages.length > 0 && (
               <Flex wrap gap="8">
-                {person.languages.map((language, index) => (
+                {t.person.languages.map((language: string) => (
                   <Tag key={language} size="l">
                     {language}
                   </Tag>
@@ -107,13 +119,13 @@ export default function About() {
         )}
         <Column className={styles.blockAlign} flex={9} maxWidth={40}>
           <Column
-            id={about.intro.title}
+            id={t.about.intro.title}
             fillWidth
             minHeight="160"
             vertical="center"
             marginBottom="32"
           >
-            {about.calendar.display && (
+            {t.about.calendar.display && (
               <Flex
                 fitWidth
                 border="brand-alpha-medium"
@@ -129,9 +141,9 @@ export default function About() {
                 vertical="center"
               >
                 <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Flex paddingX="8">Schedule a call</Flex>
+                <Flex paddingX="8">{t.locale === 'fr' ? 'Prendre rendez-vous' : 'Schedule a call'}</Flex>
                 <IconButton
-                  href={about.calendar.link}
+                  href={t.about.calendar.link}
                   data-border="rounded"
                   variant="secondary"
                   icon="chevronRight"
@@ -139,19 +151,19 @@ export default function About() {
               </Flex>
             )}
             <Heading className={styles.textAlign} variant="display-strong-xl">
-              {person.name}
+              {t.person.name}
             </Heading>
             <Text
               className={styles.textAlign}
               variant="display-default-xs"
               onBackground="neutral-weak"
             >
-              {person.role}
+              {t.person.role}
             </Text>
-            {social.length > 0 && (
+            {t.social.length > 0 && (
               <Flex className={styles.blockAlign} paddingTop="20" paddingBottom="8" gap="8" wrap horizontal="center" fitWidth data-border="rounded">
-                {social.map(
-                  (item) =>
+                {t.social.map(
+                  (item: any) =>
                     item.link && (
                         <React.Fragment key={item.name}>
                             <Button
@@ -178,19 +190,19 @@ export default function About() {
             )}
           </Column>
 
-          {about.intro.display && (
+          {t.about.intro.display && (
             <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="xl">
-              {about.intro.description}
+              {t.about.intro.description}
             </Column>
           )}
 
-          {about.work.display && (
+          {t.about.work.display && (
             <>
-              <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
-                {about.work.title}
+              <Heading as="h2" id={t.about.work.title} variant="display-strong-s" marginBottom="m">
+                {t.about.work.title}
               </Heading>
               <Column fillWidth gap="l" marginBottom="40">
-                {about.work.experiences.map((experience, index) => (
+                {t.about.work.experiences.map((experience: any, index: number) => (
                   <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
                     <Flex fillWidth horizontal="space-between" vertical="end" marginBottom="4">
                       <Text id={experience.company} variant="heading-strong-l">
@@ -204,11 +216,11 @@ export default function About() {
                       {experience.role}
                     </Text>
                     <Column as="ul" gap="16">
-                      {experience.achievements.map((achievement: JSX.Element, index: number) => (
+                      {experience.achievements.map((achievement: any, idx: number) => (
                         <Text
                           as="li"
                           variant="body-default-m"
-                          key={`${experience.company}-${index}`}
+                          key={`${experience.company}-${idx}`}
                         >
                           {achievement}
                         </Text>
@@ -220,13 +232,13 @@ export default function About() {
             </>
           )}
 
-          {about.studies.display && (
+          {t.about.studies.display && (
             <>
-              <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
-                {about.studies.title}
+              <Heading as="h2" id={t.about.studies.title} variant="display-strong-s" marginBottom="m">
+                {t.about.studies.title}
               </Heading>
               <Column fillWidth gap="l" marginBottom="40">
-                {about.studies.institutions.map((institution, index) => (
+                {t.about.studies.institutions.map((institution: any, index: number) => (
                   <Column key={`${institution.name}-${index}`} fillWidth gap="4">
                     <Text id={institution.name} variant="heading-strong-l">
                       {institution.name}
@@ -240,18 +252,18 @@ export default function About() {
             </>
           )}
 
-{about.technical.display && (
+{t.about.technical.display && (
   <>
     <Heading
       as="h2"
-      id={about.technical.title}
+      id={t.about.technical.title}
       variant="display-strong-s"
       marginBottom="40"
     >
-      {about.technical.title}
+      {t.about.technical.title}
     </Heading>
     <Column fillWidth gap="xl">
-{about.technical.skills.map((skill, index) => (
+{t.about.technical.skills.map((skill: any, index: number) => (
   <Column key={`${skill.title}-${index}`} fillWidth gap="16">
     <Text variant="heading-strong-l">{skill.title}</Text>
     <Text variant="body-default-m" onBackground="neutral-weak">
@@ -259,8 +271,7 @@ export default function About() {
     </Text>
     
     <Flex wrap="wrap" gap="8">
-      {/* On ajoute ?. pour vérifier que badges existe avant de mapper */}
-      {skill.badges?.map((badge, i) => (
+      {skill.badges?.map((badge: string, i: number) => (
         <Tag key={i} variant="neutral" size="m">
           {badge}
         </Tag>
