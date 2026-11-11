@@ -1,5 +1,7 @@
-// IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL = "https://demo.magic-portfolio.com";
+// Adresse du site, utilisée pour le SEO (balises meta, schema, sitemap).
+// Pour changer de domaine sans toucher au code : définir NEXT_PUBLIC_BASE_URL
+// dans les variables d'environnement Vercel, puis redéployer.
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL || "https://bengaly-secops.vercel.app";
 
 const routes = {
   "/": true,
