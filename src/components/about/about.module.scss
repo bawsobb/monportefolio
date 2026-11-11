@@ -25,3 +25,41 @@
         align-self: center;
     }
 }
+
+.timeline {
+    position: relative;
+    padding-left: var(--static-space-24);
+    border-left: 1px solid var(--neutral-alpha-medium);
+}
+
+.timelineItem {
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0.55rem;
+        left: calc(var(--static-space-24) * -1 - 5px);
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--brand-solid-strong);
+        box-shadow: 0 0 0 4px var(--brand-alpha-weak);
+    }
+
+    li::marker {
+        color: var(--brand-on-background-weak);
+    }
+}
+
+.skillCard {
+    padding: var(--static-space-24);
+    border: 1px solid var(--neutral-alpha-medium);
+    border-radius: var(--radius-l);
+    background: var(--surface-background);
+    transition: border-color 0.3s ease;
+
+    &:hover {
+        border-color: var(--brand-alpha-strong);
+    }
+}

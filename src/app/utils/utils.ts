@@ -18,6 +18,7 @@ type Metadata = {
   tag?: string;
   team: Team[];
   link?: string;
+  tech: string[];
 };
 
 import { notFound } from 'next/navigation';
@@ -43,10 +44,12 @@ function readMDXFile(filePath: string) {
     publishedAt: data.publishedAt,
     summary: data.summary || "",
     image: data.image || "",
-    images: data.images || [],
+    // Les projets ne déclarent souvent qu'une image de couverture : on la réutilise.
+    images: data.images?.length ? data.images : data.image ? [data.image] : [],
     tag: data.tag || [],
     team: data.team || [],
     link: data.link || "",
+    tech: data.tech || [],
   };
 
   return { metadata, content };

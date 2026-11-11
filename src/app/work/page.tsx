@@ -45,7 +45,7 @@ export default async function Work() {
       />
       
       {/* Header de la section Work */}
-      <Flex fillWidth direction="column" gap="16" marginBottom="40" paddingX="12">
+      <Flex fillWidth direction="column" gap="16" marginBottom="40">
         <Badge variant="success" size="s" style={{ width: 'fit-content' }}>
           {locale === 'fr' ? '🌍 Expertise Remote | GMT+0' : '🌍 Remote Expertise | GMT+0'}
         </Badge>

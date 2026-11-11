@@ -1,98 +1,69 @@
 "use client";
 
-import {
-  AvatarGroup,
-  Carousel,
-  Column,
-  Flex,
-  Heading,
-  SmartLink,
-  Text,
-} from "@/once-ui/components";
+import Image from "next/image";
+import Link from "next/link";
 
+import { Icon } from "@/once-ui/components";
 import { useTranslation } from "@/context/LanguageContext";
+import styles from "./ProjectCard.module.scss";
 
 interface ProjectCardProps {
   href: string;
   priority?: boolean;
-  images: string[];
+  image?: string;
   title: string;
-  content: string;
   description: string;
-  avatars: { src: string }[];
-  link: string;
+  publishedAt?: string;
+  tech?: string[];
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   href,
-  images = [],
+  priority,
+  image,
   title,
-  content,
   description,
-  avatars,
-  link,
+  publishedAt,
+  tech = [],
 }) => {
   const { locale } = useTranslation();
+  const year = publishedAt ? new Date(publishedAt).getFullYear() : null;
 
   return (
-    <Column fillWidth gap="m">
-      <Carousel
-        sizes="(max-width: 960px) 100vw, 960px"
-        images={images.map((image) => ({
-          src: image,
-          alt: title,
-        }))}
-      />
-      <Flex
-        mobileDirection="column"
-        fillWidth
-        paddingX="s"
-        paddingTop="12"
-        paddingBottom="24"
-        gap="l"
-      >
-        {title && (
-          <Flex flex={5}>
-            <Heading as="h2" wrap="balance" variant="heading-strong-xl">
-              {title}
-            </Heading>
-          </Flex>
+    <Link href={href} className={styles.card}>
+      <div className={styles.cover}>
+        {image ? (
+          <Image
+            src={image}
+            alt=""
+            fill
+            priority={priority}
+            sizes="(max-width: 768px) 100vw, 480px"
+            className={styles.image}
+          />
+        ) : (
+          <div className={styles.placeholder} aria-hidden="true">
+            <span>{tech[0] ?? title}</span>
+          </div>
         )}
-        {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
-          <Column flex={7} gap="16">
-            {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
-            {description?.trim() && (
-              <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
-                {description}
-              </Text>
-            )}
-            <Flex gap="24" wrap>
-              {content?.trim() && (
-                <SmartLink
-                  suffixIcon="arrowRight"
-                  style={{ margin: "0", width: "fit-content" }}
-                  href={href}
-                >
-                  <Text variant="body-default-s">
-                    {locale === 'fr' ? 'Lire l\'étude de cas' : 'Read case study'}
-                  </Text>
-                </SmartLink>
-              )}
-              {link && (
-                <SmartLink
-                  suffixIcon="arrowUpRightFromSquare"
-                  style={{ margin: "0", width: "fit-content" }}
-                  href={link}
-                >
-                  <Text variant="body-default-s">
-                    {locale === 'fr' ? 'Voir le projet' : 'View project'}
-                  </Text>
-                </SmartLink>
-              )}
-            </Flex>
-          </Column>
+        {year && <span className={styles.year}>{year}</span>}
+      </div>
+      <div className={styles.body}>
+        <h3 className={styles.title}>{title}</h3>
+        {description?.trim() && <p className={styles.description}>{description}</p>}
+        {tech.length > 0 && (
+          <ul className={styles.tech}>
+            {tech.slice(0, 4).map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+            {tech.length > 4 && <li>+{tech.length - 4}</li>}
+          </ul>
         )}
-      </Flex>
-    </Column>
+        <span className={styles.more}>
+          {locale === "fr" ? "Lire l'étude de cas" : "Read case study"}
+          <Icon name="arrowRight" size="xs" />
+        </span>
+      </div>
+    </Link>
   );
 };
