@@ -1,0 +1,43 @@
+---
+title: "ITSM Multi-entités : Durcissement & Industrialisation de GLPI"
+publishedAt: "2026-11-06"
+summary: "Mise à jour de sécurité, réduction de la surface d'exposition, personnalisation par API REST et fiabilisation de l'inventaire d'un GLPI servant plusieurs entités clientes."
+image: "/images/projects/glpi-itsm.jpg"
+tech: ["GLPI 11", "API REST", "Python", "Apache", "Let's Encrypt", "MariaDB", "Entra ID", "Nmap"]
+---
+
+## 🎯 Le Défi
+Un GLPI en production, partagé entre plusieurs entités clientes, cumulait trois problèmes : une version en retard sur les correctifs de sécurité, des services d'administration joignables depuis Internet, et un inventaire de parc qui ne remontait plus. L'objectif : remettre la plateforme à niveau sans interrompre le support, puis en faire un véritable outil de pilotage.
+
+## 🛡️ Sécurité & Réduction de la Surface d'Exposition
+- **Mise à jour de sécurité :** montée de version de GLPI 11.0.5 vers 11.0.11, après évaluation de l'exposition du serveur aux vulnérabilités PHP publiées.
+- **Audit avant fermeture :** inventaire des ports exposés et identification de ce qui les utilise réellement, avant toute fermeture. Les interfaces d'administration et les bases de données ont ensuite été limitées à l'accès local.
+- **Piège Docker :** les ports publiés par Docker contournent le pare-feu `ufw` ; la restriction se fait donc dans les fichiers Compose, pas seulement dans le pare-feu.
+- **Durcissement applicatif :** droits restreints sur les fichiers de configuration et cookies de session sécurisés.
+
+## ⚙️ Personnalisation Pilotée par API
+Plutôt que de cliquer dans l'interface, les changements ont été appliqués par scripts Python via l'API REST, en quatre phases :
+- **Identité :** thème et logos aux couleurs de l'entreprise, y compris dans les e-mails.
+- **Portail :** formulaires de demande guidés et tuiles d'accès rapide pour les utilisateurs.
+- **Processus :** règles d'affectation des tickets, file d'attente d'équipe et notifications.
+- **Tableaux de bord :** vues de suivi de l'activité du support.
+
+Chaque modification est consignée dans un journal (date, objet, valeur avant, valeur après), ce qui rend chaque changement traçable et réversible.
+
+## 📝 Rapport Journalier des Techniciens
+Refonte du formulaire de rapport d'activité : réservé à l'équipe technique, il génère un ticket dans l'entité du client concerné, avec le détail des réponses section par section.
+
+## 🖥️ Fiabilisation de l'Inventaire
+- **Diagnostic :** les agents avaient cessé de remonter après le renommage du serveur ; le certificat TLS ne couvrait plus l'ancien nom, que les agents utilisaient toujours.
+- **Correction :** ajout de l'ancien nom au certificat (SAN) et redirection réservée aux navigateurs, pour ne pas casser l'adresse d'inventaire des agents. Les postes ont recommencé à remonter sans intervention sur site.
+- **Rapprochement des sources :** croisement de l'inventaire GLPI, d'un export des appareils Entra ID et d'un balayage réseau pour repérer les postes sans agent.
+- **Déploiement :** installeur de l'agent GLPI avec vérification de l'empreinte SHA-256 du paquet, et étiquette (tag) par entité ; une règle d'import classe automatiquement chaque poste dans la bonne entité.
+- **Structuration :** statuts de cycle de vie, lieux, groupes par service et rattachement des postes à leurs utilisateurs.
+
+## 📈 Valeur Ajoutée
+- **Plateforme à jour** et services d'administration qui ne sont plus exposés à Internet.
+- **Changements traçables :** une configuration appliquée par scripts, rejouable et documentée.
+- **Parc visible :** un inventaire qui remonte à nouveau, classé par entité.
+
+## 💡 Leçon Retenue
+Après une mise à jour, tester une page applicative interne et pas seulement la page d'accueil : un fichier de routage manquant peut laisser l'accueil répondre alors que le reste de l'application est inaccessible. Ce contrôle est désormais intégré au script de mise à jour.

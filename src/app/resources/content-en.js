@@ -6,10 +6,11 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Systems, Network & Security Engineer | SecOps Specialist",
+  role: "Systems, Network & Security Engineer · SecOps Specialist",
   avatar: "/images/avatar.jpg",
   email: "bawsobb@proton.me",
   location: "Africa/Bamako",
+  locationLabel: "Bamako, Mali · GMT+0",
   languages: ["French", "English"],
 };
 
@@ -115,12 +116,12 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        {"Based in Bamako (GMT+0), I operate critical infrastructures for national and international clients."} <br />
-        Result-oriented system and network engineer (Master's), specialized in cybersecurity, network administration, and IT infrastructure. <br />
-        {"Confirmed expertise in system audits according to international standards (ISO 27001, NIST) and in managing multi-client critical environments."}<br /> 
-        {"Specialized in the deployment and management of shared SOC architectures with Wazuh and Zabbix for proactive threat detection."} <br />
-        Proficiency in Windows/Linux server environments, virtualization (Proxmox, VMware), cloud security (Microsoft 365), asynchronous communication, and technical documentation (Markdown, Wiki, GLPI knowledge base).<br />
-        My lab is entirely powered by a solar system, guaranteeing 100% uptime for my remote operations.
+        <p>{"Based in Bamako (GMT+0), I operate critical infrastructures for national and international clients."}</p>
+        <p>Result-oriented system and network engineer (Master's), specialized in cybersecurity, network administration, and IT infrastructure.</p>
+        <p>{"Confirmed expertise in system audits according to international standards (ISO 27001, NIST) and in managing multi-client critical environments."}</p>
+        <p>{"Specialized in the deployment and management of shared SOC architectures with Wazuh and Zabbix for proactive threat detection."}</p>
+        <p>Proficiency in Windows/Linux server environments, virtualization (Proxmox, VMware), cloud security (Microsoft 365), asynchronous communication, and technical documentation (Markdown, Wiki, GLPI knowledge base).</p>
+        <p>My lab is entirely powered by a solar system, guaranteeing 100% uptime for my remote operations.</p>
       </>
     ),
   },

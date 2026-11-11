@@ -1,0 +1,40 @@
+---
+title: "Cloud Collaboratif Souverain : Nextcloud & OnlyOffice (PoC)"
+publishedAt: "2026-09-04"
+summary: "Preuve de concept d'une alternative auto-hébergée à Microsoft 365 : partage de fichiers, édition bureautique en ligne, 2FA obligatoire et sauvegardes testées."
+image: "/images/projects/nextcloud-onlyoffice.jpg"
+tech: ["Nextcloud", "OnlyOffice", "Docker", "Nginx", "Let's Encrypt", "WebDAV", "Bash"]
+---
+
+## 🎯 Le Défi
+Évaluer si une suite collaborative auto-hébergée peut couvrir les usages quotidiens d'une petite équipe (partage de fichiers, bibliothèques par service, édition de documents Office) tout en gardant la maîtrise des données. Contrainte forte : le serveur disponible hébergeait déjà le SOC, il fallait donc dimensionner chaque brique pour ne pas dégrader la supervision.
+
+## 🏗️ Architecture
+- **Nextcloud** derrière un reverse proxy **Nginx**, avec certificats **Let's Encrypt** et un sous-domaine par service.
+- **OnlyOffice Document Server** en conteneur Docker, mémoire plafonnée, relié à Nextcloud par un secret JWT. Choisi pour sa fidélité aux formats Word, Excel et PowerPoint échangés avec les clients.
+- **Stockage externe WebDAV** pour les bibliothèques d'équipe, afin de ne pas consommer le disque du serveur, avec un quota local réduit par compte.
+- **Dossiers par groupe** (direction, technique, comptabilité) avec droits alignés sur les groupes d'utilisateurs.
+
+## 🛡️ Sécurité
+- **Double authentification obligatoire** pour tous les comptes, pas uniquement les administrateurs.
+- **Protection contre la force brute** active sur l'authentification.
+- **Secrets hors des scripts :** les identifiants du stockage externe sont enregistrés une seule fois dans l'interface d'administration et référencés par leur nom.
+
+## 💾 Sauvegarde & Restauration
+- **Sauvegarde quotidienne** de la base de données, des fichiers et de la configuration.
+- **Test de restauration :** un script recharge le dump SQL dans une base temporaire et contrôle l'intégrité des archives, sans toucher à l'instance en service. Une sauvegarde jamais restaurée n'est pas une garantie.
+
+## 🔎 Un Défaut Trouvé Avant Qu'il Ne Casse
+Une simulation de renouvellement (`certbot --dry-run`) a révélé deux défauts silencieux :
+- **Challenge ACME intercepté :** la redirection HTTP vers HTTPS capturait aussi le chemin de validation Let's Encrypt, ce qui aurait fait échouer le renouvellement. Le chemin est désormais exclu de la redirection.
+- **Aucun rechargement après renouvellement :** sans hook de déploiement, Nginx aurait continué à servir l'ancien certificat jusqu'à son expiration. Un hook global recharge maintenant le serveur, y compris pour le tableau de bord du SOC hébergé sur la même machine.
+
+## ⚖️ Limites Identifiées
+- **Éditeur collaboratif et WebDAV :** la création de documents en ligne directement dans le stockage externe n'est pas fiable ; le dépôt et la consultation fonctionnent normalement.
+- **Pas de redondance :** un seul serveur porte la suite collaborative et le SOC. Passer en production suppose de traiter ce point d'architecture avant d'ajouter de la charge.
+- **Périmètre :** messagerie, visioconférence et outils de conformité avancés restent hors du périmètre de cette preuve de concept.
+
+## 📈 Valeur Ajoutée
+- **Données maîtrisées :** fichiers et documents hébergés sur une infrastructure contrôlée.
+- **Décision éclairée :** un comparatif concret des écarts avec Microsoft 365, plutôt qu'une évaluation théorique.
+- **Exploitation fiabilisée :** renouvellement des certificats et restauration vérifiés par des tests, pas supposés.
