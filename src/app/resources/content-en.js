@@ -48,6 +48,32 @@ const home = {
   title: `${person.name} - Systems & Security Engineer`,
   description: `Portfolio of ${person.name}, expert in critical infrastructure and SecOps, 100% Remote-Ready.`,
   headline: <>{"Designing Resilient and Secure Infrastructures"}</>,
+  ui: {
+    status: "Remote-ready · Bamako, GMT+0",
+    headlineLead: "Engineering infrastructures that are",
+    headlineAccent: "resilient and secure",
+    ctaProjects: "View my projects",
+    ctaAbout: "About me",
+    terminal: {
+      role: "Systems, Network & Security Engineer · SecOps",
+      certs: "MSc Networks & Telecom · Cisco CCNA · Network Security",
+      status: "Remote-ready · GMT+0 · Solar + Fiber/4G",
+    },
+    stats: [
+      { value: "10+", label: "client infrastructures monitored by the SOC" },
+      { value: "99.9%", label: "target availability on the Multi-WAN backbone" },
+      { value: "−50%", label: "unplanned service interruptions" },
+    ],
+    statsProjects: "documented case studies",
+    expertise: { eyebrow: "Expertise", title: "Four technical pillars" },
+    projects: { eyebrow: "Projects", title: "Recent case studies", all: "All projects" },
+    blog: { eyebrow: "Blog", title: "Latest article", all: "All articles" },
+    contact: {
+      title: "An infrastructure or security project?",
+      text: "Audit, monitoring, SOC, network redesign: let's talk about your needs.",
+      email: "Email me",
+    },
+  },
   featured: {
     display: true,
     title: (

@@ -45,10 +45,36 @@ const social = [
 
 const home = {
   path: "/",
-  label: "Home",
+  label: "Accueil",
   title: `${person.name} - Ingénieur Systèmes & Sécurité`,
   description: `Portfolio de ${person.name}, expert en infrastructures critiques et SecOps, 100% Remote-Ready.`,
   headline: <>{"Ingénieur d'Infrastructures Résilientes et Sécurisées"}</>,
+  ui: {
+    status: "Remote-ready · Bamako, GMT+0",
+    headlineLead: "Ingénieur d'infrastructures",
+    headlineAccent: "résilientes et sécurisées",
+    ctaProjects: "Voir mes projets",
+    ctaAbout: "À propos",
+    terminal: {
+      role: "Ingénieur Réseaux, Systèmes & Sécurité · SecOps",
+      certs: "Master RST · Cisco CCNA · Network Security",
+      status: "Remote-ready · GMT+0 · Solaire + Fibre/4G",
+    },
+    stats: [
+      { value: "10+", label: "infrastructures clientes supervisées par le SOC" },
+      { value: "99,9 %", label: "de disponibilité visée sur le backbone Multi-WAN" },
+      { value: "−50 %", label: "d'interruptions de service imprévues" },
+    ],
+    statsProjects: "études de cas documentées",
+    expertise: { eyebrow: "Expertise", title: "Quatre piliers techniques" },
+    projects: { eyebrow: "Projets", title: "Études de cas récentes", all: "Tous les projets" },
+    blog: { eyebrow: "Blog", title: "Dernier article", all: "Tous les articles" },
+    contact: {
+      title: "Un projet d'infrastructure ou de sécurité ?",
+      text: "Audit, supervision, SOC, refonte réseau : discutons de votre besoin.",
+      email: "M'écrire",
+    },
+  },
   featured: {
     display: true,
     title: (
@@ -71,7 +97,7 @@ const home = {
 
 const about = {
   path: "/about",
-  label: "About",
+  label: "À propos",
   title: `À propos – ${person.name}`,
   description: `Meet ${person.name}, ${person.role} from ${person.location}`,
   tableOfContent: {
@@ -208,7 +234,7 @@ const blog = {
 
 const work = {
   path: "/work",
-  label: "Work",
+  label: "Projets",
   title: `Projects – ${person.name}`,
   description: `Design and dev projects by ${person.name}`,
 };

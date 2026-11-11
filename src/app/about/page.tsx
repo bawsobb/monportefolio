@@ -201,9 +201,9 @@ export default async function About() {
               <Heading as="h2" id={t.about.work.title} variant="display-strong-s" marginBottom="m">
                 {t.about.work.title}
               </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
+              <Column fillWidth gap="l" marginBottom="40" className={styles.timeline}>
                 {t.about.work.experiences.map((experience: any, index: number) => (
-                  <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
+                  <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth className={styles.timelineItem}>
                     <Flex fillWidth horizontal="space-between" vertical="end" marginBottom="4">
                       <Text id={experience.company} variant="heading-strong-l">
                         {experience.company}
@@ -258,13 +258,13 @@ export default async function About() {
       as="h2"
       id={t.about.technical.title}
       variant="display-strong-s"
-      marginBottom="40"
+      marginBottom="m"
     >
       {t.about.technical.title}
     </Heading>
-    <Column fillWidth gap="xl">
+    <Column fillWidth gap="16">
 {t.about.technical.skills.map((skill: any, index: number) => (
-  <Column key={`${skill.title}-${index}`} fillWidth gap="16">
+  <Column key={`${skill.title}-${index}`} fillWidth gap="16" className={styles.skillCard}>
     <Text variant="heading-strong-l">{skill.title}</Text>
     <Text variant="body-default-m" onBackground="neutral-weak">
       {skill.description}

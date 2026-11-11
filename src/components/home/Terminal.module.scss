@@ -1,0 +1,117 @@
+.terminal {
+    width: 100%;
+    border: 1px solid var(--neutral-alpha-medium);
+    border-radius: var(--radius-l);
+    background: var(--surface-background);
+    box-shadow:
+        var(--shadow-l),
+        0 0 5rem -1.5rem var(--brand-alpha-strong);
+    overflow: hidden;
+    font-family: var(--font-code), ui-monospace, monospace;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+}
+
+.bar {
+    display: flex;
+    align-items: center;
+    gap: var(--static-space-12);
+    padding: var(--static-space-12) var(--static-space-16);
+    border-bottom: 1px solid var(--neutral-alpha-weak);
+    background: var(--neutral-alpha-weak);
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+
+    i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--neutral-alpha-strong);
+    }
+}
+
+.title {
+    color: var(--neutral-on-background-weak);
+    font-size: 0.75rem;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--static-space-12);
+    padding: var(--static-space-20);
+}
+
+.line {
+    display: flex;
+    gap: var(--static-space-8);
+    opacity: 0;
+    animation: show 0.01s linear var(--delay) forwards;
+}
+
+.prompt {
+    color: var(--accent-on-background-weak);
+    user-select: none;
+}
+
+.command {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    color: var(--neutral-on-background-strong);
+    animation: type var(--duration) steps(var(--chars)) var(--delay) forwards;
+}
+
+.output {
+    padding-left: calc(1ch + var(--static-space-8));
+    color: var(--brand-on-background-weak);
+    opacity: 0;
+    animation: show 0.35s ease var(--delay) forwards;
+}
+
+.cursor {
+    width: 0.6em;
+    height: 1.2em;
+    margin-top: 0.2em;
+    background: var(--brand-on-background-weak);
+    animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes type {
+    to {
+        width: calc(var(--chars) * 1ch);
+    }
+}
+
+@keyframes show {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .line,
+    .output {
+        opacity: 1;
+        animation: none;
+    }
+
+    .command {
+        width: auto;
+        animation: none;
+    }
+
+    .cursor {
+        animation: none;
+    }
+}
