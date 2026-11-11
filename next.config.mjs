@@ -9,6 +9,12 @@ const withMDX = mdx({
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   transpilePackages: ["next-mdx-remote"],
+  // Les pages dynamiques (accueil, projets, blog) lisent les fichiers MDX au
+  // runtime : sans cette inclusion, ils sont absents des fonctions Vercel
+  // et ces pages renvoient une 404.
+  outputFileTracingIncludes: {
+    "/*": ["./src/app/work/projects/**/*", "./src/app/blog/posts/**/*"],
+  },
   sassOptions: {
     compiler: "modern",
     silenceDeprecations: ["legacy-js-api"],
