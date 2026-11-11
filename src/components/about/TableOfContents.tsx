@@ -1,88 +1,56 @@
 "use client";
 
-import React from "react";
-import { Column, Flex, Text } from "@/once-ui/components";
+import React, { useEffect, useState } from "react";
 import styles from "./about.module.scss";
 
 interface TableOfContentsProps {
-  structure: {
-    title: string;
-    display: boolean;
-    items: string[];
-  }[];
-  about: {
-    tableOfContent: {
-      display: boolean;
-      subItems: boolean;
-    };
-  };
+  sections: string[];
+  label: string;
 }
 
-const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) => {
-  const scrollTo = (id: string, offset: number) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - offset;
+/** Sommaire de la page : surligne la section en cours de lecture. */
+const TableOfContents: React.FC<TableOfContentsProps> = ({ sections, label }) => {
+  const [active, setActive] = useState(sections[0]);
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+  useEffect(() => {
+    const onScroll = () => {
+      let current = sections[0];
+      for (const id of sections) {
+        const element = document.getElementById(id);
+        if (element && element.getBoundingClientRect().top <= 140) current = id;
+      }
+      setActive(current);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [sections]);
+
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({
+      top: element.getBoundingClientRect().top + window.scrollY - 96,
+      behavior: reduced ? "auto" : "smooth",
+    });
   };
 
-  if (!about.tableOfContent.display) return null;
-
   return (
-    <Column
-      left="0"
-      style={{
-        top: "50%",
-        transform: "translateY(-50%)",
-        whiteSpace: "nowrap",
-      }}
-      position="fixed"
-      paddingLeft="24"
-      gap="32"
-      hide="m"
-    >
-      {structure
-        .filter((section) => section.display)
-        .map((section, sectionIndex) => (
-          <Column key={sectionIndex} gap="12">
-            <Flex
-              cursor="interactive"
-              className={styles.hover}
-              gap="8"
-              vertical="center"
-              onClick={() => scrollTo(section.title, 80)}
-            >
-              <Flex height="1" minWidth="16" background="neutral-strong"></Flex>
-              <Text>{section.title}</Text>
-            </Flex>
-            {about.tableOfContent.subItems && (
-              <>
-                {section.items.map((item, itemIndex) => (
-                  <Flex
-                    hide="l"
-                    key={itemIndex}
-                    style={{ cursor: "pointer" }}
-                    className={styles.hover}
-                    gap="12"
-                    paddingLeft="24"
-                    vertical="center"
-                    onClick={() => scrollTo(item, 80)}
-                  >
-                    <Flex height="1" minWidth="8" background="neutral-strong"></Flex>
-                    <Text>{item}</Text>
-                  </Flex>
-                ))}
-              </>
-            )}
-          </Column>
-        ))}
-    </Column>
+    <nav className={styles.toc} aria-label={label}>
+      {sections.map((section) => (
+        <button
+          key={section}
+          type="button"
+          className={styles.tocItem}
+          aria-current={active === section ? "true" : undefined}
+          onClick={() => scrollTo(section)}
+        >
+          {section}
+        </button>
+      ))}
+    </nav>
   );
 };
 

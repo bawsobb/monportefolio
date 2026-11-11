@@ -7,10 +7,11 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Ingénieur Réseaux,Systèmes & Sécurité | Spécialiste SecOps", // Plus impactant
+  role: "Ingénieur Réseaux, Systèmes & Sécurité · Spécialiste SecOps", // Plus impactant
   avatar: "/images/avatar.jpg",
   email: "bawsobb@proton.me", // Mis à jour selon tes préférences de candidature
   location: "Africa/Bamako",
+  locationLabel: "Bamako, Mali · GMT+0",
   languages: ["Français", "Anglais"],
 };
 
@@ -116,12 +117,12 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        {"Basé à Bamako (GMT+0), j'opère des infrastructures critiques pour des clients nationaux et internationaux."} <br />
-        Ingénieur systèmes et réseaux (Master) orienté résultats, spécialisé en cybersécurité, administration réseau et infrastructures informatiques. <br />
-        {"Expertise confirmée en audit de systèmes selon les référentiels internationaux (ISO 27001, NIST) et en gestion d'environnements critiques multi-clients."}<br /> 
-        {"Spécialisé dans le déploiement et la gestion d'architectures SOC mutualisées avec Wazuh et Zabbix pour la détection proactive des menaces."} <br />
-        Maîtrise des environnements serveurs Windows/Linux, de la virtualisation (Proxmox, VMware), de la sécurité du cloud (Microsoft 365), de la communication asynchrone et de la documentation technique (Markdown, Wiki, base de connaissances GLPI).<br />
-        Mon laboratoire est entièrement alimenté par un système solaire, garantissant un uptime de 100% pour mes opérations à distance.
+        <p>{"Basé à Bamako (GMT+0), j'opère des infrastructures critiques pour des clients nationaux et internationaux."}</p>
+        <p>Ingénieur systèmes et réseaux (Master) orienté résultats, spécialisé en cybersécurité, administration réseau et infrastructures informatiques.</p>
+        <p>{"Expertise confirmée en audit de systèmes selon les référentiels internationaux (ISO 27001, NIST) et en gestion d'environnements critiques multi-clients."}</p>
+        <p>{"Spécialisé dans le déploiement et la gestion d'architectures SOC mutualisées avec Wazuh et Zabbix pour la détection proactive des menaces."}</p>
+        <p>Maîtrise des environnements serveurs Windows/Linux, de la virtualisation (Proxmox, VMware), de la sécurité du cloud (Microsoft 365), de la communication asynchrone et de la documentation technique (Markdown, Wiki, base de connaissances GLPI).</p>
+        <p>Mon laboratoire est entièrement alimenté par un système solaire, garantissant un uptime de 100% pour mes opérations à distance.</p>
       </>
     ),
   },
