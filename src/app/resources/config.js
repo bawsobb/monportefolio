@@ -143,4 +143,38 @@ const mailchimp = {
   },
 };
 
-export { routes, protectedRoutes, effects, style, display, mailchimp, baseURL, font };
+// Boutique Chariow : liens utilisés par l'encart en fin d'article et le lien « Boutique ».
+// Pour associer un article à un produit, ajouter `product: <clé>` dans son en-tête MDX.
+const shop = {
+  url: "https://experit-mali.mychariow.shop",
+  products: {
+    mikrotik: {
+      url: "https://experit-mali.mychariow.shop/prd_js488x",
+      fr: {
+        title: "Pack Expert : Haute Disponibilité & Sécurité MikroTik",
+        text: "Le guide, le script de configuration et la checklist de maintenance de l'architecture Starlink + fibre décrite ici, prêts à déployer.",
+        cta: "Voir le pack",
+      },
+      en: {
+        title: "Expert Pack: MikroTik High Availability & Security",
+        text: "The guide, configuration script and maintenance checklist for the Starlink + fiber architecture described here, ready to deploy.",
+        cta: "See the pack",
+      },
+    },
+    nextcloud: {
+      url: "https://experit-mali.mychariow.shop/installation-nextcloud",
+      fr: {
+        title: "Installation & sécurisation de Nextcloud",
+        text: "Votre propre cloud de fichiers, installé, sécurisé et documenté, sur votre serveur ou dans le cloud. Formation de l'équipe incluse.",
+        cta: "Voir le service",
+      },
+      en: {
+        title: "Nextcloud installation & hardening",
+        text: "Your own file cloud, installed, secured and documented, on your server or in the cloud. Team training included.",
+        cta: "See the service",
+      },
+    },
+  },
+};
+
+export { shop, routes, protectedRoutes, effects, style, display, mailchimp, baseURL, font };

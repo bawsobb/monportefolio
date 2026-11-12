@@ -1,5 +1,6 @@
 // import a pre-defined template for config and content options
 export {
+  shop,
   routes,
   protectedRoutes,
   effects,
