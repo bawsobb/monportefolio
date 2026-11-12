@@ -74,6 +74,7 @@ const home = {
       title: "Un projet d'infrastructure ou de sécurité ?",
       text: "Audit, supervision, SOC, refonte réseau : discutons de votre besoin.",
       email: "M'écrire",
+      shop: "Boutique",
     },
   },
   featured: {

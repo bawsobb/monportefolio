@@ -6,6 +6,7 @@ import { baseURL } from "@/app/resources";
 import { about, person, work } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
+import { ShopCta } from "@/components/ShopCta";
 import { Metadata } from "next";
 import { Meta, Schema } from "@/once-ui/modules";
 
@@ -95,6 +96,7 @@ export default async function Project({
           </Text>
         </Flex>
         <CustomMDX source={post.content} />
+        <ShopCta product={post.metadata.product} />
       </Column>
       <ScrollToHash />
     </Column>

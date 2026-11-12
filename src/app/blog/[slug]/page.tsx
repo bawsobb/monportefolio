@@ -5,6 +5,7 @@ import { AvatarGroup, Button, Column, Heading, HeadingNav, Icon, Row, Text } fro
 import { about, blog, person, baseURL } from "@/app/resources";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
+import { ShopCta } from "@/components/ShopCta";
 import { Metadata } from 'next';
 import { Meta, Schema } from "@/once-ui/modules";
 
@@ -87,6 +88,7 @@ export default async function Blog({
           <Column as="article" fillWidth>
             <CustomMDX source={post.content} />
           </Column>
+          <ShopCta product={post.metadata.product} />
           <ScrollToHash />
         </Column>
     </Row>

@@ -38,6 +38,7 @@ import {
   PiNetworkDuotone,
   PiHardDrivesDuotone,
   PiPulseDuotone,
+  PiStorefrontDuotone,
 } from "react-icons/pi";
 
 import { FaDiscord, FaGithub, FaLinkedin, FaX } from "react-icons/fa6";
@@ -81,6 +82,7 @@ export const iconLibrary: Record<string, IconType> = {
   network: PiNetworkDuotone,
   server: PiHardDrivesDuotone,
   pulse: PiPulseDuotone,
+  shop: PiStorefrontDuotone,
 };
 
 export type IconLibrary = typeof iconLibrary;

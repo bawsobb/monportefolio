@@ -3,6 +3,7 @@
 import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
 import styles from "./Footer.module.scss";
 import { useTranslation } from "@/context/LanguageContext";
+import { shop } from "@/app/resources";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -39,6 +40,13 @@ export const Footer = () => {
           </Text>
         </Text>
         <Flex gap="16">
+          <IconButton
+            href={shop.url}
+            icon="shop"
+            tooltip={t.locale === "fr" ? "Boutique" : "Shop"}
+            size="s"
+            variant="ghost"
+          />
           {t.social.map(
             (item: any) =>
               item.link && (

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Avatar, Button, Flex, Icon, IconButton } from "@/once-ui/components";
-import { baseURL } from "@/app/resources";
+import { baseURL, shop } from "@/app/resources";
 import { Mailchimp } from "@/components";
 import { Reveal } from "@/components/Reveal";
 import { Terminal } from "@/components/home/Terminal";
@@ -241,6 +241,9 @@ export default async function Home() {
                 LinkedIn
               </Button>
             )}
+            <Button href={shop.url} variant="secondary" size="l" prefixIcon="shop" data-border="rounded">
+              {ui.contact.shop}
+            </Button>
           </div>
         </section>
       </Reveal>

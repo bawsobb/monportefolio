@@ -73,6 +73,7 @@ const home = {
       title: "An infrastructure or security project?",
       text: "Audit, monitoring, SOC, network redesign: let's talk about your needs.",
       email: "Email me",
+      shop: "Shop",
     },
   },
   featured: {
