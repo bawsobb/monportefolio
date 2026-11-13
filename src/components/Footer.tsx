@@ -30,13 +30,12 @@ export const Footer = () => {
           <Text onBackground="neutral-weak">© {currentYear} /</Text>
           <Text paddingX="4">{t.person.name}</Text>
           <Text onBackground="neutral-weak">
-            {/* Usage of this template requires attribution. Please don't remove the link to Once UI. */}
-            / {t.locale === 'fr' ? 'Créez votre portfolio avec' : 'Build your portfolio with'}{" "}
-            <SmartLink
-              href="https://once-ui.com/templates/magic-portfolio"
-            >
-              Once UI
-            </SmartLink>
+            {/* Crédit exigé par la licence CC BY-NC 4.0 du modèle d'origine (voir LICENSE) : ne pas supprimer. */}
+            / {t.locale === "fr" ? "Adapté de" : "Adapted from"}{" "}
+            <SmartLink href="https://once-ui.com/templates/magic-portfolio">Magic Portfolio</SmartLink>{" "}
+            (
+            <SmartLink href="https://creativecommons.org/licenses/by-nc/4.0/deed.fr">CC BY-NC 4.0</SmartLink>
+            )
           </Text>
         </Text>
         <Flex gap="16">
