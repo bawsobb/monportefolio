@@ -2,7 +2,7 @@
 title: "Étude de Cas : Refonte Complète et Résilience Réseau chez Technisol Mali"
 publishedAt: "2026-02-07"
 summary: "Ingénierie d'une architecture Haute Disponibilité (99.9% uptime) mixant Starlink, PPPoE et Routage Récursif sur MikroTik."
-image: "/images/blog/reseau_technisol.png"
+image: "/images/blog/reseau-double-wan.jpg"
 tag: "Architecture Réseau"
 product: "mikrotik"
 ---
@@ -13,7 +13,7 @@ L'audit initial a révélé des vulnérabilités critiques : routeurs grand publ
 
 L'objectif pour 2026 était clair : passer à une architecture de niveau **Entreprise** combinant Starlink, PPPoE, virtualisation Proxmox et sécurité proactive via Wazuh et Zabbix.
 
-![Schéma d'architecture réseau Technisol](/images/blog/reseau_technisol.png)
+![Schéma d'architecture réseau : double WAN fibre et Starlink, routeur MikroTik, VLAN par usage](/images/blog/reseau-double-wan.jpg)
 
 
 ## 2. Le Cœur du Réseau : SD-WAN Hybride et Routage Avancé
@@ -59,7 +59,7 @@ L'intégration de Wazuh (SOC) et AdGuard Home a rendu le réseau très strict, b
 - **Mangle Routing :** Forçage de ces équipements sur la Fibre pour éviter les micro-coupures de Starlink.
 ```bash
 /ip firewall nat
-add action=dst-nat chain=dstnat comment="Bypass AdGuard - Interphone VIP" src-address=192.168.88.186 dst-port=53 protocol=udp to-addresses=8.8.8.8 place-before=0
+add action=dst-nat chain=dstnat comment="Bypass AdGuard - Interphone VIP" src-address=192.168.10.50 dst-port=53 protocol=udp to-addresses=8.8.8.8 place-before=0
 ```
 
 ## 5. Conclusion & Résultats
